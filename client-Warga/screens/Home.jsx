@@ -1,10 +1,15 @@
 import { View, Image, StyleSheet, ScrollView } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-import { Text, Card, Button, Icon, Avatar } from "@rneui/themed";
+import { Text, Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
 import EventCard from "../components/EventCard";
+import { useState } from "react";
+import AnnouncementCard from "../components/AnnouncementCard";
+import ProfileCard from "../components/ProfileCard";
 
 export default function Home() {
+  const [postType, setPostType] = useState(0);
+  // 0 = Event, 1 = Announcement
   const user = {
     name: "Jane Doe",
     avatar:
@@ -12,84 +17,44 @@ export default function Home() {
   };
 
   return (
-    <ScrollView>
-      <View style={{ backgroundColor: "white" }}>
-        <Card containerStyle={styles.container}>
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ width: "50%", fontSize: 16, fontWeight: "bold" }}>
-                Profile
-              </Text>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <ScrollView>
+        <View>
+          <ProfileCard user={user} />
 
-              <SimpleLineIcons
-                name="options-vertical"
-                size={16}
-                color="black"
-              />
-            </View>
-            {/* Divider */}
-            <View
-              style={{
-                borderColor: "#2187ab",
-                borderWidth: 2,
-                marginTop: 10,
-                marginBottom: 16,
-              }}
-            />
-            {/* End Divider */}
-            <View style={styles.user}>
-              <Avatar
-                size={64}
-                rounded
-                source={user.avatar ? { uri: user.avatar } : {}}
-                style={styles.image}
-              />
-              <Text style={styles.name}>{user.name}</Text>
-            </View>
-          </View>
-        </Card>
-        <Text
-          style={{
-            marginLeft: 16,
-            fontWeight: "bold",
-            fontSize: 20,
-            marginTop: 20,
-          }}
-        >
-          Events
-        </Text>
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-      </View>
-    </ScrollView>
+          <ButtonGroup
+            buttons={["Event", "Announcement"]}
+            selectedIndex={postType}
+            onPress={(value) => {
+              setPostType(value);
+            }}
+            containerStyle={{
+              marginTop: 30,
+              marginHorizontal: 16,
+              borderRadius: 8,
+            }}
+            selectedButtonStyle={{ backgroundColor: "#582d2f" }}
+          />
+          {postType === 0 ? <EventCard /> : <AnnouncementCard />}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
+    borderRadius: 8,
     backgroundColor: "#2596be",
-  },
-  eventContainer: {
-    borderRadius: 10,
-    backgroundColor: "#145369",
   },
   fonts: {
     marginBottom: 8,
   },
   user: {
     flexDirection: "row",
-    marginBottom: 6,
+    justifyContent: "space-between",
   },
-  image: {
+  icon: {
     width: 40,
     height: 40,
     marginRight: 10,
@@ -98,8 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: "white",
-    // borderColor: "black",
-    // borderWidth: 1,
     alignItems: "center",
     alignContent: "center",
     textAlignVertical: "center",

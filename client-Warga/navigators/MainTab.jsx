@@ -5,16 +5,20 @@ import {
   AntDesign,
   MaterialCommunityIcons,
   Entypo,
+  FontAwesome,
+  SimpleLineIcons,
 } from "@expo/vector-icons";
 
 import Home from "../screens/Home";
+import Profile from "../screens/Profile";
+import Menu from "../screens/Menu";
 
 const Tab = createBottomTabNavigator();
 export default function MainTab() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "black",
+        tabBarActiveTintColor: "#582d2f",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: [
           {
@@ -31,6 +35,28 @@ export default function MainTab() {
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" size={24} color={color} />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="user" size={24} color={color} />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Menu"
+        component={Menu}
+        options={{
+          tabBarLabel: "Menu",
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="menu" size={24} color={color} />
           ),
           headerShown: false,
         }}
