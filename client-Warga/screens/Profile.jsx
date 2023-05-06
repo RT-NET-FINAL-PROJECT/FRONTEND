@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { View, Image, StyleSheet, ScrollView, TextInput } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+  Pressable,
+} from "react-native";
+import { Foundation } from "@expo/vector-icons";
 
 import { Text, Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
 export default function Profile({ navigation }) {
@@ -48,33 +56,25 @@ export default function Profile({ navigation }) {
             />
           </View>
           <View>
-            <Text>Full Name</Text>
-            <TextInput
-              style={styles.input}
-              value={"Jamal Kusman"}
-              editable={false}
-              // selectTextOnFocus={false}
-            />
+            <Text
+              style={{ textAlign: "center", fontWeight: "bold", fontSize: 24 }}
+            >
+              Jamal Kusman
+            </Text>
           </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Status Keluarga</Text>
-            <TextInput
-              style={styles.input}
-              value={"Kepala Keluarga"}
-              editable={false}
-              selectTextOnFocus={false}
-            />
+          <View style={{ marginTop: 5 }}>
+            <Text style={{ textAlign: "center" }}>Status Keluarga</Text>
           </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>No. Telp</Text>
-            <TextInput
-              style={styles.input}
-              value={"0123123123"}
-              editable={false}
-              selectTextOnFocus={false}
-            />
+          <View
+            style={{
+              marginTop: 5,
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <Foundation name="telephone" size={24} color="black" />
+            <Text style={{ marginLeft: 5 }}>0891283213</Text>
           </View>
-
           <View style={{ marginTop: 15 }}>
             <Text>No. KTP</Text>
             <TextInput
