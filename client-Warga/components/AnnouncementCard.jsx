@@ -3,7 +3,7 @@ import { SimpleLineIcons, Entypo } from "@expo/vector-icons";
 
 import { Text, Card, Button, Icon, Avatar } from "@rneui/themed";
 
-export default function EventCard({ post }) {
+export default function AnnouncementCard({ post }) {
   const descriptionText =
     "Event Description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis earum ex quaerat sint sapiente ab minus reprehenderit exercitationem nisi labore.";
   const descriptionTextShort =
@@ -19,7 +19,7 @@ export default function EventCard({ post }) {
           }}
         >
           <Text style={{ width: "100%", fontSize: 16, fontWeight: "bold" }}>
-            Event Name
+            Announcement Name
           </Text>
         </View>
         {/* Divider */}
@@ -33,16 +33,16 @@ export default function EventCard({ post }) {
         />
         {/* End Divider */}
         <Text style={styles.description}>
-          {descriptionText.length > 100
-            ? descriptionText.substring(0, 100) + "..."
+          {descriptionText.length > 200
+            ? descriptionText.substring(0, 200) + "..."
             : descriptionText}
-          {descriptionText.length > 100 ? (
+          {descriptionText.length > 200 ? (
             <Text style={{ fontWeight: "bold" }}> See More</Text>
           ) : (
             ""
           )}
         </Text>
-        <View style={styles.information}>
+        {/* <View style={styles.information}>
           <Text style={{ fontWeight: "bold" }}>IDR 10.000</Text>
           <View>
             <View
@@ -61,21 +61,7 @@ export default function EventCard({ post }) {
               12-12-2023
             </Text>
           </View>
-        </View>
-        <Button
-          title="See Details"
-          containerStyle={{
-            height: 40,
-            width: "100%",
-            // marginHorizontal: 50,
-            // marginVertical: 10,
-            marginTop: 10,
-          }}
-          buttonStyle={{
-            backgroundColor: "#582d2f",
-            borderRadius: 8,
-          }}
-        />
+        </View> */}
       </View>
     </Card>
   );
