@@ -16,7 +16,10 @@ import LayananPage from '../pages/LayananPage'
 import AddLayananPage from '../pages/AddLayananPage'
 import EditLayananPage from '../pages/EditLayananPage'
 import DeleteLayananPage from '../pages/DeleteLayananPage'
-
+import KasPage from '../pages/KasPage'
+import AddKasPage from '../pages/AddKasPage'
+import EditKasPage from '../pages/EditKasPage'
+import DeleteKasPage from '../pages/DeleteKasPage'
 
 const router = createBrowserRouter([
     {   
@@ -75,6 +78,22 @@ const router = createBrowserRouter([
             {
                 path : "/layanan/delete/:layananId",
                 element : <DeleteLayananPage />
+            },
+            {
+                path : "/kas",
+                element : <KasPage />
+            },
+            {
+                path : "/kas/add",
+                element : <AddKasPage />
+            },
+            {
+                path : "/kas/edit/:kasId",
+                element : <EditKasPage />
+            },
+            {
+                path : "/kas/delete/:kasId",
+                element : <DeleteKasPage />
             },
             {
                 path : "/register-RT-Admin",
