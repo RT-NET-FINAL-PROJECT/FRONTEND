@@ -3,24 +3,32 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 
 import { Text, Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
 import EventCard from "../components/EventCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnnouncementCard from "../components/AnnouncementCard";
 import ProfileCard from "../components/ProfileCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentLoggedIn } from "../stores/action/actionCreator";
 
 export default function Home() {
   const [postType, setPostType] = useState(0);
   // 0 = Event, 1 = Announcement
-  const user = {
-    name: "Jane Doe",
-    avatar:
-      "https://images.pexels.com/photos/598745/pexels-photo-598745.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb",
-  };
+  const { currentLoggedIn } = useSelector((state) => state.users);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    try {
+      dispatch(getCurrentLoggedIn());
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
-        <View>
-          <ProfileCard user={user} />
+        <View style={{ marginVertical: 20 }}>
+          <ProfileCard user={currentLoggedIn} />
 
           <ButtonGroup
             buttons={["Event", "Announcement"]}
@@ -29,11 +37,21 @@ export default function Home() {
               setPostType(value);
             }}
             containerStyle={{
-              marginTop: 30,
+              marginTop: 35,
               marginHorizontal: 16,
               borderRadius: 8,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
             }}
-            selectedButtonStyle={{ backgroundColor: "#582d2f" }}
+            selectedButtonStyle={{ backgroundColor: "white" }}
+            selectedTextStyle={{ color: "#582d2f", fontWeight: "bold" }}
           />
           {postType === 0 ? <EventCard /> : <AnnouncementCard />}
         </View>

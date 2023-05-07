@@ -3,17 +3,27 @@ import { View, Image, StyleSheet, ScrollView } from "react-native";
 import { Text, Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
 
 export default function ProfileCard({ user }) {
+  // console.log(user)
+
   return (
     <Card containerStyle={styles.container}>
       <View style={styles.user}>
         <View>
-          <Text style={styles.name}>Hi, {user.name}</Text>
-          <Text style={styles.name}>RT 3</Text>
+          <Text style={styles.name}>
+            <Text
+              style={{ fontSize: 20, fontWeight: "bold", color: "#582d2f" }}
+            >
+              Hi
+            </Text>
+            {",  "}
+            {user?.namaLengkap}
+          </Text>
+          <Text style={styles.name}>{"RT <number>"}</Text>
         </View>
         <Avatar
           size={64}
           rounded
-          source={user.avatar ? { uri: user.avatar } : {}}
+          source={user?.photoUrl ? { uri: user?.photoUrl } : {}}
           style={styles.icon}
         />
       </View>
@@ -24,7 +34,16 @@ export default function ProfileCard({ user }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    backgroundColor: "#582d2f",
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   fonts: {
     marginBottom: 8,
@@ -41,7 +60,7 @@ const styles = StyleSheet.create({
   name: {
     flex: 1,
     fontSize: 16,
-    color: "white",
+    color: "black",
     alignItems: "center",
     alignContent: "center",
     textAlignVertical: "center",

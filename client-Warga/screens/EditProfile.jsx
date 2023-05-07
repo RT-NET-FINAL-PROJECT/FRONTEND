@@ -15,10 +15,11 @@ export default function EditProfile({ navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
-        <View style={{ marginHorizontal: 16, marginVertical: 16 }}>
+        <View style={{ marginVertical: 16 }}>
           <View
             style={{
               flexDirection: "row",
+              marginHorizontal: 16,
             }}
           >
             <Text
@@ -27,146 +28,155 @@ export default function EditProfile({ navigation }) {
                 fontSize: 24,
               }}
             >
-              Edit Your Profile
+              Edit Your Profile Details
             </Text>
           </View>
-          <View style={{ flex: 1, alignItems: "center", marginVertical: 16 }}>
-            <Avatar
-              size={128}
-              rounded
-              source={{
-                uri: "https://images.pexels.com/photos/598745/pexels-photo-598745.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb",
-              }}
-              style={styles.icon}
-            />
-          </View>
-          <View>
-            <Text>Full Name</Text>
-            <TextInput
-              style={styles.input}
-              value={"Jamal Kusman"}
-              editable={false}
-              // selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Status Keluarga</Text>
-            <TextInput
-              style={styles.input}
-              value={"Kepala Keluarga"}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>No. Telp</Text>
-            <TextInput
-              style={styles.input}
-              value={"0123123123"}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
+          <Card containerStyle={styles.container}>
+            <View>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Nama Lengkap
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={"Jamal Kusman"}
+                editable={false}
+                // selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Status Keluarga
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={"Kepala Keluarga"}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                No. Telp
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={"0123123123"}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Tempat Lahir
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Tanggal Lahir
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Pekerjaan
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
 
-          <View style={{ marginTop: 15 }}>
-            <Text>No. KTP</Text>
-            <TextInput
-              style={styles.input}
-              value={"0392019201239"}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Foto KTP</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>No. KK</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Foto KK</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Foto Akta</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Agama</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Jenis Kelamin</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Status Perkawinan</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Pekerjaan</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Tempat Lahir</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Tanggal Lahir</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Jenis Kelamin
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Status Perkawinan
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                Agama
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                No. Kartu Tanda Penduduk
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={"0392019201239"}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+            <View style={{ marginTop: 15 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}
+              >
+                No. Kartu Keluarga
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={""}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+            </View>
+          </Card>
         </View>
       </ScrollView>
     </View>
@@ -176,7 +186,16 @@ export default function EditProfile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    backgroundColor: "#2596be",
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   fonts: {
     marginBottom: 8,

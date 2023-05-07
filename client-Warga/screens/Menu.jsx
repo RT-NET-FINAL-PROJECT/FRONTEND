@@ -1,13 +1,34 @@
-import { View, Image, StyleSheet, ScrollView } from "react-native";
+import { Alert, View, Image, StyleSheet, ScrollView } from "react-native";
 import { SimpleLineIcons, Entypo } from "@expo/vector-icons";
 
 import { Text, Card, Button, Icon, Avatar } from "@rneui/themed";
+import { useDispatch } from "react-redux";
+import { logout } from "../stores/action/actionCreator";
 
-export default function Menu({ post, navigation }) {
-  const descriptionText =
-    "Event Description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis earum ex quaerat sint sapiente ab minus reprehenderit exercitationem nisi labore.";
-  const descriptionTextShort =
-    "Event Description Lorem ipsum dolor, sit amet consectetur";
+export default function Menu({ navigation }) {
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    try {
+      Alert.alert(
+        //title
+        "Logout",
+        //body
+        "Anda yakin ingin logout?",
+        [
+          { text: "Yes", onPress: () => dispatch(logout(navigation)) },
+          {
+            text: "No",
+            onPress: () => console.log("No Pressed"),
+            style: "cancel",
+          },
+        ],
+        { cancelable: true }
+        //clicking out side of alert will not cancel
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -168,6 +189,7 @@ export default function Menu({ post, navigation }) {
             borderRadius: 8,
             justifyContent: "flex-start",
           }}
+          onPress={() => handleLogout()}
         />
       </View>
     </View>
