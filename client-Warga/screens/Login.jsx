@@ -1,12 +1,29 @@
 import React, { FC, ReactElement, useState } from "react";
 import { StyleSheet, TextInput, Text, View } from "react-native";
 import { Card, Button, Icon, Avatar } from "@rneui/themed";
+import { useDispatch } from "react-redux";
+import { login } from "../stores/action/actionCreator";
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   console.log(email, password);
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = async () => {
+    try {
+      await dispatch(
+        login({
+          email,
+          password,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View
@@ -54,6 +71,7 @@ export default function Login({ navigation }) {
             backgroundColor: "#582d2f",
             borderRadius: 8,
           }}
+          onPress={() => handleSubmit()}
         />
         <Text style={{ marginTop: 20 }}>
           Don't have an account yet?{" "}

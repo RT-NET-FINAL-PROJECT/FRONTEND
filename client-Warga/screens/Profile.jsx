@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Image,
@@ -6,174 +6,95 @@ import {
   ScrollView,
   TextInput,
   Pressable,
+  Text,
 } from "react-native";
 import { Foundation } from "@expo/vector-icons";
 
-import { Text, Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
+import { Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentLoggedIn } from "../stores/action/actionCreator";
+import ProfileDetailsCard from "../components/ProfileDetailsCard";
+import ProfileBerkasCard from "../components/ProfileBerkasCard";
+
 export default function Profile({ navigation }) {
-  const [fullName, setFullName] = useState("");
+  const { currentLoggedIn } = useSelector((state) => state.users);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    try {
+      dispatch(getCurrentLoggedIn());
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  console.log(currentLoggedIn);
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
-        <View style={{ marginHorizontal: 16, marginVertical: 16 }}>
-          <View
+        <View style={{ marginVertical: 16 }}>
+          <Text
             style={{
-              flexDirection: "row",
+              fontWeight: "bold",
+              fontSize: 24,
+              width: "50%",
+              marginHorizontal: 16,
             }}
           >
-            <Text
+            Your Profile
+          </Text>
+          <Card containerStyle={styles.container}>
+            <View
               style={{
-                fontWeight: "bold",
-                fontSize: 24,
-                width: "50%",
+                flexDirection: "row",
               }}
             >
-              Profile
-            </Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 16,
-                width: "50%",
-                textAlign: "right",
-                textAlignVertical: "center",
-                color: "blue",
-              }}
-              onPress={() => navigation.navigate("EditProfile")}
-            >
-              Edit Profile
-            </Text>
-          </View>
-          <View style={{ flex: 1, alignItems: "center", marginVertical: 16 }}>
-            <Avatar
-              size={128}
-              rounded
-              source={{
-                uri: "https://images.pexels.com/photos/598745/pexels-photo-598745.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb",
-              }}
-              style={styles.icon}
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  width: "50%",
+                }}
+              >
+                Profile Picture
+              </Text>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 15,
+                  width: "50%",
+                  textAlign: "right",
+                  textAlignVertical: "center",
+                  color: "blue",
+                }}
+                onPress={() => navigation.navigate("EditProfile")}
+              >
+                Edit
+              </Text>
+            </View>
+            <View style={{ flex: 1, alignItems: "center", marginVertical: 16 }}>
+              <Avatar
+                size={128}
+                rounded
+                source={{
+                  uri: "https://images.pexels.com/photos/598745/pexels-photo-598745.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb",
+                }}
+                style={styles.icon}
+              />
+            </View>
+            <Card.Divider />
+            {/* ProfileDetails Component */}
+            <ProfileDetailsCard
+              currentLoggedIn={currentLoggedIn}
+              navigation={navigation}
             />
-          </View>
-          <View>
-            <Text
-              style={{ textAlign: "center", fontWeight: "bold", fontSize: 24 }}
-            >
-              Jamal Kusman
-            </Text>
-          </View>
-          <View style={{ marginTop: 5 }}>
-            <Text style={{ textAlign: "center" }}>Status Keluarga</Text>
-          </View>
-          <View
-            style={{
-              marginTop: 5,
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Foundation name="telephone" size={24} color="black" />
-            <Text style={{ marginLeft: 5 }}>0891283213</Text>
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>No. KTP</Text>
-            <TextInput
-              style={styles.input}
-              value={"0392019201239"}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Foto KTP</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>No. KK</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Foto KK</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Foto Akta</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Agama</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Jenis Kelamin</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Status Perkawinan</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Pekerjaan</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Tempat Lahir</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Tanggal Lahir</Text>
-            <TextInput
-              style={styles.input}
-              value={""}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-          </View>
+            {/* END ProfileDetails Component */}
+          </Card>
+          <ProfileBerkasCard
+            currentLoggedIn={currentLoggedIn}
+            navigation={navigation}
+          />
         </View>
       </ScrollView>
     </View>
@@ -183,7 +104,16 @@ export default function Profile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    backgroundColor: "#2596be",
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   fonts: {
     marginBottom: 8,

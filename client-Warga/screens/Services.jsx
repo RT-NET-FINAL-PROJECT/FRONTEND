@@ -13,7 +13,6 @@ import { Text, Card, ButtonGroup, Button, Icon, Avatar } from "@rneui/themed";
 export default function Services({ navigation, route }) {
   // console.log(route.params.serviceName);
   const [serviceName, setServiceName] = useState("");
-  console.log(serviceName);
 
   useEffect(() => {
     setServiceName(route?.params?.serviceName);
