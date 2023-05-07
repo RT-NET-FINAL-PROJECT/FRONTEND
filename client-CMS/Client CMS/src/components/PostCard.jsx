@@ -40,10 +40,10 @@ function PostCard() {
                 backgroundColor:'white', 
                 borderColor:'rgba(59,7,11,255)',
                 color:'rgba(59,7,11,255)',
-                marginRight:'5px'
+                marginRight:'10px'
             }}
         >
-        Ubah Info Kegiatan
+        Ubah Informasi Kegiatan
         </Button>
         <Button
             as={Link} 
@@ -53,7 +53,7 @@ function PostCard() {
                 borderColor:'rgba(59,7,11,255)'
             }}
         >
-        Hapus Info Kegiatan
+        Hapus Informasi Kegiatan
         </Button>
       </Card.Body>
     </Card>
