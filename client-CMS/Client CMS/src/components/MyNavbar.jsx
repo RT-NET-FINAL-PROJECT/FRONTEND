@@ -44,14 +44,14 @@ export default function MyNavbar() {
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    marginRight: "37px",
+                    marginRight: "5px",
                     textDecoration: "none",
                     borderBottom: location.pathname === "/" ? "2px solid rgba(59,7,11,255)" : "none",
                 }}
                 onMouseOver={(e) => e.target.style.backgroundColor = "#c4b5b6"} 
                 onMouseOut={(e) => e.target.style.backgroundColor = "white"}
                 >
-              POSTS
+              POS INFORMASI
             </Nav.Link>
             <Nav.Link 
                 as={Link} 
@@ -59,7 +59,7 @@ export default function MyNavbar() {
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    marginRight: "37px",
+                    marginRight: "5px",
                     textDecoration: "none",
                     borderBottom: location.pathname === "/warga" ? "2px solid rgba(59,7,11,255)" : "none", 
                 }}
@@ -74,14 +74,14 @@ export default function MyNavbar() {
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    marginRight: "37px",
+                    marginRight: "5px",
                     textDecoration: "none",
                     borderBottom: location.pathname === "/kas" ? "2px solid rgba(59,7,11,255)" : "none", 
                 }}
                 onMouseOver={(e) => e.target.style.backgroundColor = "#c4b5b6"} 
                 onMouseOut={(e) => e.target.style.backgroundColor = "white"}
                 >
-              KAS RT
+              INFO KEUANGAN RT
             </Nav.Link>
             <Nav.Link 
                 as={Link} 
@@ -89,7 +89,7 @@ export default function MyNavbar() {
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    marginRight: "37px",
+                    marginRight: "5px",
                     textDecoration: "none",
                     borderBottom: location.pathname === "/layanan" ? "2px solid rgba(59,7,11,255)" : "none", 
                 }}
@@ -104,7 +104,7 @@ export default function MyNavbar() {
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    marginRight: "37px",
+                    marginRight: "5px",
                     textDecoration: "none",
                     borderBottom: location.pathname === "/register-RT-Admin" ? "2px solid rgba(59,7,11,255)" : "none", 
                 }}
@@ -119,7 +119,7 @@ export default function MyNavbar() {
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    marginRight: "37px",
+                    marginRight: "5px",
                     textDecoration: "none",
                     borderBottom: location.pathname === "/register-RT" ? "2px solid rgba(59,7,11,255)" : "none", 
                 }}
@@ -133,7 +133,8 @@ export default function MyNavbar() {
                 style={{ 
                     backgroundColor: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
-                    color: "white" 
+                    color: "white", 
+                    borderColor:'rgba(59,7,11,255)' 
                 }} 
                 onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
                 onMouseOut={(e) => e.target.style.color = "white"}
