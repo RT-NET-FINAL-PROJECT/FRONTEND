@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
-export default function PostCard() {
+export default function WargaDetailPage() {
   return (
     <Card style={{borderColor:'rgba(59,7,11,255)'}}>
       <Card.Header 
@@ -59,4 +59,3 @@ export default function PostCard() {
     </Card>
   );
 }
-

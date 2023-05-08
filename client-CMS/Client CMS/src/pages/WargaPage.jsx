@@ -40,24 +40,12 @@ export default function WargaPage() {
               <tr>
                 <th>No</th>
                 <th>Nama Lengkap</th>
-                <th>Foto</th>
+                <th>Nomor Telepon</th>
+                <th>Email</th>
                 <th>NIK</th>
                 <th>Status Akun</th>
                 <th>Akun</th>
                 <th>Aksi</th>
-                <th>Jenis Kelamin</th>
-                <th>Tempat Lahir</th>
-                <th>Tanggal Lahir</th>
-                <th>Nomor Telepon</th>
-                <th>Email</th>
-                <th>Agama</th>
-                <th>Pekerjaan</th>
-                <th>Status Perkawinan</th>
-                <th>Status Keluarga</th>
-                <th>KTP</th>
-                <th>Akta</th>
-                <th>Nomor Kartu Keluarga</th>
-                <th>Kartu Keluarga</th>
               </tr>
             </thead>
             <tbody>
