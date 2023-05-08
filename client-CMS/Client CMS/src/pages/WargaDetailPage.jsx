@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function WargaDetailPage() {
   return (
-    <Container style={{marginTop:"120px", marginBottom:"50px"}}>
+    <Container style={{marginTop:"120px", marginBottom:"50px", width: "1000px"}}>
       <div style={{marginTop: "20px"}}>
         <Card style={{borderColor:'rgba(59,7,11,255)'}}>
           <Card.Header 
@@ -17,7 +17,7 @@ export default function WargaDetailPage() {
                 color:"white"
             }}
             >
-            Data Warga
+            Data Lengkap Warga
           </Card.Header>
           <Card.Body>
             <div style={{textAlign:"end"}}>

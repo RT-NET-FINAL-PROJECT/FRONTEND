@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function AddWargaPage() {
 
     return (
-      <Container className="w-50" style={{marginTop:"100px", marginBottom:"50px"}}>
+      <Container style={{marginTop:"100px", width: "500px", marginBottom:"50px"}}>
         <h1 style={{color:'rgba(59,7,11,255)', marginTop: "120px", fontSize:"35px",textAlign:"center", fontWeight: "bold"}}>Registrasi Data Warga</h1>
         <Form style={{borderColor:'rgba(59,7,11,255)', marginTop: "25px"}}>
             <Form.Group >

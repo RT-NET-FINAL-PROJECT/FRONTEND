@@ -8,7 +8,7 @@ export default function RegisterRTBaruPage() {
   return (
     <>
       <Container style={{ marginTop: "3%", marginBottom: "3%", width: "550px", backgroundColor: 'white', padding: "40px" }}>
-        <h2 style={{ color: 'rgba(59,7,11,255)', textAlign: "center", marginTop: "10%", marginBottom: "7%", fontWeight: "bold" }}>Daftarkan RT Baru!</h2>
+        <h1 style={{ color: 'rgba(59,7,11,255)', fontSize:"35px", textAlign: "center", marginTop: "10%", marginBottom: "7%", fontWeight: "bold" }}>Daftarkan RT Baru!</h1>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicNamaLengkap">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Nama Lengkap Ketua RT:</Form.Label>
