@@ -14,6 +14,7 @@ export default function WargaPage() {
             color: "rgba(59,7,11,255)",
             marginTop: "120px",
             fontSize: "35px",
+            textAlign:"center"
           }}
         >
           Data Warga RT X
@@ -34,21 +35,20 @@ export default function WargaPage() {
             + Tambahkan Data Warga
           </Button>
         </div>
-        <div style={{ overflowX: "auto" }}>
-          <Table striped bordered hover style={{ marginTop: "20px", whiteSpace: "nowrap" }}>
+        <div className="warga-row" style={{ overflowX: "auto" }}>
+          <Table  striped bordered hover style={{ marginTop: "20px", whiteSpace: "nowrap" }}>
             <thead style={{backgroundColor: "rgba(59,7,11,255)",  color:'white'}}>
               <tr>
                 <th>No</th>
                 <th>Nama Lengkap</th>
                 <th>Nomor Telepon</th>
                 <th>Email</th>
-                <th>NIK</th>
                 <th>Status Akun</th>
                 <th>Akun</th>
-                <th>Aksi</th>
+                <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
                 <WargaRow />
                 <WargaRow />
                 <WargaRow />

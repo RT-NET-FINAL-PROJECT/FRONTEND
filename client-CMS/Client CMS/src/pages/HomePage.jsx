@@ -7,7 +7,7 @@ export default function HomePage() {
 
   return (
     <Container style={{marginTop:"100px"}}>
-      <h1 style={{color:'rgba(59,7,11,255)', marginTop: "120px", fontSize:"35px"}}>Pos Informasi Kegiatan RT X</h1>
+      <h1 style={{color:'rgba(59,7,11,255)', marginTop: "120px", fontSize:"35px", textAlign:"center"}}>Pos Informasi Kegiatan RT X</h1>
         <div className="myButton" style={{marginBottom:"5px", textAlign: "right" }}>
           <Button 
             as={Link} 

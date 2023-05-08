@@ -5,16 +5,15 @@ import { Link } from "react-router-dom";
 export default function WargaRow() {
 
     return (
-        <tr>
+        <tr >
             <td>No</td>
             <td>Nama Lengkap</td>
             <td>Nomor Telepon</td>
             <td>Email</td>
-            <td>NIK</td>
             <td>Status Akun</td>
             <td>Role Akun</td>
             <td>
-                <div className="d-flex gap-2">
+                <div className="d-flex gap-2 justify-content-center">
                     <Link to={`/warga/detail/:wargaId`}>
                         <Button 
                             style={{
@@ -25,6 +24,18 @@ export default function WargaRow() {
                             }}
                         >
                         Lihat Detil Data
+                        </Button>
+                    </Link>
+                    <Link to={`/warga/edit/:wargaId`}>
+                        <Button 
+                            style={{
+                                backgroundColor:'grey', 
+                                borderColor:'rgba(59,7,11,255)',
+                                color:'white',
+                                marginRight:'10px'
+                            }}
+                        >
+                        Ubah Detil Data
                         </Button>
                     </Link>
                     <Link to={`/warga/delete/:wargaId`}>
