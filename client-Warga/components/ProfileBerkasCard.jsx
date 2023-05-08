@@ -8,6 +8,7 @@ import {
   Text,
 } from "react-native";
 import { Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
+import { Feather } from "@expo/vector-icons";
 
 export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
   return (
@@ -39,7 +40,7 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
             }}
             onPress={() => navigation.navigate("EditProfile")}
           >
-            Edit
+            <Feather name="edit" size={20} color="black" />
           </Text>
         </View>
         <Text style={{ fontWeight: "normal", fontSize: 15, color: "black" }}>
@@ -71,7 +72,7 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
             }}
             onPress={() => navigation.navigate("EditProfile")}
           >
-            Edit
+            <Feather name="edit" size={20} color="black" />
           </Text>
         </View>
         <Text style={{ fontWeight: "normal", fontSize: 15, color: "black" }}>
@@ -102,7 +103,7 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
             }}
             onPress={() => navigation.navigate("EditProfile")}
           >
-            Edit
+            <Feather name="edit" size={20} color="black" />
           </Text>
         </View>
         <Text style={{ fontWeight: "normal", fontSize: 15, color: "black" }}>

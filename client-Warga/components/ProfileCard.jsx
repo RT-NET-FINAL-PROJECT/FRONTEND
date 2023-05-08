@@ -18,12 +18,18 @@ export default function ProfileCard({ user }) {
             {",  "}
             {user?.namaLengkap}
           </Text>
-          <Text style={styles.name}>{"RT <number>"}</Text>
+          <Text style={styles.name}>{user?.rt_id}</Text>
         </View>
         <Avatar
           size={64}
           rounded
-          source={user?.photoUrl ? { uri: user?.photoUrl } : {}}
+          source={
+            user?.photoUrl
+              ? { uri: user?.photoUrl }
+              : {
+                  uri: "https://publichealth.ouhsc.edu/Portals/1055a/Images/no-photo_1.png?ver=2021-06-23-120512-690",
+                }
+          }
           style={styles.icon}
         />
       </View>

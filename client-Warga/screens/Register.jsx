@@ -19,7 +19,7 @@ export default function Register({ navigation }) {
 
   const handleSubmit = async () => {
     try {
-      await dispatch(
+      const abcd = await dispatch(
         register({
           fullName,
           email,
@@ -30,6 +30,7 @@ export default function Register({ navigation }) {
           rt,
         })
       );
+      console.log(abcd);
     } catch (error) {
       console.log(error);
     }

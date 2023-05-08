@@ -6,7 +6,12 @@ import {
 } from "../action/actionType";
 
 export default function userReducer(
-  state = { currentLoggedIn: [], errors: [], usersLoading: true, login: false },
+  state = {
+    currentLoggedIn: [],
+    errors: [],
+    usersLoading: false,
+    login: false,
+  },
   action
 ) {
   switch (action.type) {

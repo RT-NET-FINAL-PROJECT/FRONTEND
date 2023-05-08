@@ -7,12 +7,18 @@ import { useEffect, useState } from "react";
 import AnnouncementCard from "../components/AnnouncementCard";
 import ProfileCard from "../components/ProfileCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentLoggedIn } from "../stores/action/actionCreator";
+import {
+  getAnnouncementPosts,
+  getCurrentLoggedIn,
+  getEventPosts,
+} from "../stores/action/actionCreator";
 
-export default function Home() {
+export default function Home({ navigation }) {
+  const [postsLoading, setPostsLoading] = useState(false);
   const [postType, setPostType] = useState(0);
   // 0 = Event, 1 = Announcement
   const { currentLoggedIn } = useSelector((state) => state.users);
+  const { posts } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
@@ -23,6 +29,28 @@ export default function Home() {
       console.log(error);
     }
   }, []);
+
+  const fetchPosts = async () => {
+    try {
+      setPostsLoading(true);
+      if (postType === 0) {
+        await dispatch(getEventPosts());
+      }
+      if (postType === 1) {
+        await dispatch(getAnnouncementPosts());
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setPostsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, [postType]);
+
+  // console.log(postsLoading);
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -53,7 +81,28 @@ export default function Home() {
             selectedButtonStyle={{ backgroundColor: "white" }}
             selectedTextStyle={{ color: "#582d2f", fontWeight: "bold" }}
           />
-          {postType === 0 ? <EventCard /> : <AnnouncementCard />}
+          {}
+          {postType === 0
+            ? posts.map((post, index) => {
+                return (
+                  <EventCard
+                    post={post}
+                    navigation={navigation}
+                    postsLoading={postsLoading}
+                    key={index}
+                  />
+                );
+              })
+            : posts.map((post, index) => {
+                return (
+                  <AnnouncementCard
+                    post={post}
+                    navigation={navigation}
+                    postsLoading={postsLoading}
+                    key={index}
+                  />
+                );
+              })}
         </View>
       </ScrollView>
     </View>

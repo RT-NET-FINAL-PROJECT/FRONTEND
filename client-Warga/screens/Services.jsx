@@ -21,73 +21,52 @@ export default function Services({ navigation, route }) {
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
-        <View style={{ marginHorizontal: 16, marginVertical: 16 }}>
-          <View
-            style={{
-              flexDirection: "row",
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 24,
-              }}
-            >
-              Pembuatan {route?.params?.serviceName}
-            </Text>
-          </View>
-          <View style={{ marginTop: 15 }}>
-            <Text>Pesan</Text>
-            <View
-              style={{
-                borderWidth: 1,
-                borderRadius: 8,
-                borderColor: "#C3C5C5",
-                marginTop: 5,
-              }}
-            >
-              <TextInput
-                editable
-                multiline
-                numberOfLines={4}
-                maxLength={40}
-                // onChangeText={(text) => onChangeText(text)}
-                value={""}
-                style={{ padding: 10, textAlignVertical: "top" }}
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 24,
+            marginHorizontal: 16,
+            marginTop: 16,
+          }}
+        >
+          Pembuatan {route?.params?.serviceName}
+        </Text>
+        <Card containerStyle={styles.container}>
+          <View>
+            <Text>{route?.params?.serviceDescription}</Text>
+
+            {serviceName ? (
+              <Button
+                title="Submit"
+                containerStyle={{
+                  height: 40,
+                  width: "100%",
+                  textAlign: "start",
+                  marginTop: 15,
+                }}
+                buttonStyle={{
+                  backgroundColor: "#582d2f",
+                  borderRadius: 8,
+                }}
               />
-            </View>
+            ) : (
+              <Button
+                title="Submit"
+                containerStyle={{
+                  height: 40,
+                  width: "100%",
+                  textAlign: "start",
+                  marginTop: 15,
+                }}
+                buttonStyle={{
+                  backgroundColor: "#582d2f",
+                  borderRadius: 8,
+                }}
+                loading
+              />
+            )}
           </View>
-          {serviceName ? (
-            <Button
-              title="Submit"
-              containerStyle={{
-                height: 40,
-                width: "100%",
-                textAlign: "start",
-                marginTop: 15,
-              }}
-              buttonStyle={{
-                backgroundColor: "#582d2f",
-                borderRadius: 8,
-              }}
-            />
-          ) : (
-            <Button
-              title="Submit"
-              containerStyle={{
-                height: 40,
-                width: "100%",
-                textAlign: "start",
-                marginTop: 15,
-              }}
-              buttonStyle={{
-                backgroundColor: "#582d2f",
-                borderRadius: 8,
-              }}
-              loading
-            />
-          )}
-        </View>
+        </Card>
       </ScrollView>
     </View>
   );
@@ -96,7 +75,18 @@ export default function Services({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    backgroundColor: "#2596be",
+    backgroundColor: "white",
+    marginBottom: 20,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   fonts: {
     marginBottom: 8,

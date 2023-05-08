@@ -16,22 +16,18 @@ export default function EditProfile({ navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
-        <View style={{ marginHorizontal: 16, marginVertical: 16 }}>
-          <View
-            style={{
-              flexDirection: "row",
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 24,
-              }}
-            >
-              Register Guest
-            </Text>
-          </View>
-          <View style={{ marginTop: 15 }}>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 24,
+            marginTop: 16,
+            marginHorizontal: 16,
+          }}
+        >
+          Register Guest
+        </Text>
+        <Card containerStyle={styles.container}>
+          <View>
             <Text>Name</Text>
             <TextInput
               style={styles.input}
@@ -62,7 +58,7 @@ export default function EditProfile({ navigation }) {
               borderRadius: 8,
             }}
           />
-        </View>
+        </Card>
       </ScrollView>
     </View>
   );
@@ -71,7 +67,18 @@ export default function EditProfile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    backgroundColor: "#2596be",
+    backgroundColor: "white",
+    marginBottom: 20,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   fonts: {
     marginBottom: 8,
