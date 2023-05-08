@@ -6,8 +6,9 @@ import HomePage from '../pages/HomePage'
 import AddPostPage from '../pages/AddPostPage'
 import EditPostPage from '../pages/EditPostPage'
 import DeletePostPage from '../pages/DeletePostPage'
-import RegRTAdmin from '../pages/RegisterRTAdminPage.jsx'
-import RegRT from '../pages/RegisterRTPage'
+import RegisterRTAdminPage from '../pages/RegisterRTAdminPage.jsx'
+import RegisterRTBaruPage from '../pages/RegisterRTBaruPage'
+import RegisterRTPage from '../pages/RegisterRTPage'
 import WargaPage from '../pages/WargaPage'
 import AddWargaPage from '../pages/AddWargaPage'
 import WargaDetailPage from '../pages/WargaDetailPage'
@@ -101,12 +102,12 @@ const router = createBrowserRouter([
                 element : <DeleteRequestPage />
             },
             {
-                path : "/register-RT-Admin",
-                element : <RegRTAdmin />
+                path : "/register-RT-Baru",
+                element : <RegisterRTBaruPage />
             },
             {
-                path : "/register-RT",
-                element : <RegRT />
+                path : "/register-RT-Admin",
+                element : <RegisterRTAdminPage />
             }
         ]
     },
@@ -118,6 +119,15 @@ const router = createBrowserRouter([
         //     return null
         // },
         element : <LoginPage />
+    },
+    {
+        path : "/register-RT",
+        // loader : () => {
+        //     const token = localStorage.getItem('access_token')
+        //     if(token) throw redirect ('/')
+        //     return null
+        // },
+        element : <RegisterRTPage />
     }
 ])
 

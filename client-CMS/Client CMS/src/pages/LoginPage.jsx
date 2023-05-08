@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
 import Logo from "../assets//Logo RT-Net-No-BG.png"
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   return (
@@ -32,7 +33,11 @@ export default function LoginPage() {
                 style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)"}}
               />
             </Form.Group>
-            <Button type="submit" style={{backgroundColor:"white", color:'rgba(59,7,11,255)', fontWeight: "bold", borderColor:'rgba(59,7,11,255)'}}>Log in
+            <Link to={'/register-RT'}>
+              <Button type="submit" style={{marginTop:"15px", backgroundColor:"white", color:'rgba(59,7,11,255)', fontWeight: "bold", borderColor:'rgba(59,7,11,255)'}}>Register Here
+              </Button>
+            </Link>
+            <Button type="submit" style={{marginTop:"15px",backgroundColor:'rgba(59,7,11,255)', color:"white", fontWeight: "bold", borderColor:'rgba(59,7,11,255)', marginLeft:"10px"}}>Log in
             </Button>
           </Form>
     </Container>
