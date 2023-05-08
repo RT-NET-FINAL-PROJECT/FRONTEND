@@ -1,7 +1,56 @@
+import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+
 export default function AddLayananPage() {
 
     return (
-      <div>Ini Halaman AddLayananPage</div>
+      <Container className="w-50" style={{marginTop:"100px"}}>
+      <h1 style={{color:'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize:"35px",textAlign:"center"}}>Tambahkan Layanan di RT X</h1>
+      <Form style={{borderColor:'rgba(59,7,11,255)', marginTop: "25px"}}>
+          <Form.Group >
+            <Form.Label style={{color:'rgba(59,7,11,255)' , marginTop: "5px"}}>Nama Layanan:</Form.Label>
+            <Form.Control
+              name="nama"
+              type="text"
+              placeholder="Nama Layanan"
+              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
+            />
+            <Form.Label style={{color:'rgba(59,7,11,255)', marginTop: "10px"}}>Deskripsi Layanan:</Form.Label>
+            <Form.Control
+              name="deskripsi"
+              as="textarea"
+              rows={8}
+              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
+            />
+          </Form.Group>
+          <Link to={'/layanan'}>
+          <Button
+            style={{
+              marginTop: "30px",
+              backgroundColor:'white', 
+              borderColor:'rgba(59,7,11,255)',
+              color:'rgba(59,7,11,255)',
+              marginRight:'10px',
+            }} 
+          >
+          Batalkan
+          </Button>
+        </Link>  
+        <Button 
+          style={{
+            marginTop: "30px",
+            backgroundColor:'rgba(59,7,11,255)', 
+            borderColor:'rgba(59,7,11,255)'
+          }} 
+          type="submit"
+        >
+          Tambahkan
+        </Button>
+      </Form>
+    </Container>
     )
   }
   
