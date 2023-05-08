@@ -14,7 +14,8 @@ export default function WargaPage() {
             color: "rgba(59,7,11,255)",
             marginTop: "120px",
             fontSize: "35px",
-            textAlign:"center"
+            textAlign:"center",
+            fontWeight: "bold"
           }}
         >
           Data Warga RT X

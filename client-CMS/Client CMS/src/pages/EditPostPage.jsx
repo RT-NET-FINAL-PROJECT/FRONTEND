@@ -8,7 +8,7 @@ export default function EditPostPage() {
 
   return (
     <Container className="w-50" style={{marginTop:"100px"}}>
-      <h1 style={{color:'rgba(59,7,11,255)', marginTop: "120px", fontSize:"35px", textAlign:"center"}}>Ubah Informasi Kegiatan "Nama Kegiatan" di RT X</h1>
+      <h1 style={{color:'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize:"35px", textAlign:"center"}}>Ubah Informasi Kegiatan "Nama Kegiatan" di RT X</h1>
       <Form style={{borderColor:'rgba(59,7,11,255)', marginTop: "25px"}}>
           <Form.Group >
             <Form.Label style={{color:'rgba(59,7,11,255)' , marginTop: "5px"}}>Nama Kegiatan</Form.Label>
