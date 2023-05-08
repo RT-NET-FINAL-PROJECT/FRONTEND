@@ -14,7 +14,7 @@ export default function postReducer(
     case POSTS_DETAILS_SUCCESS:
       return { ...state, postDetails: action.payload };
     case POSTS_LOADING:
-      return { ...state, loading: action.payload };
+      return { ...state, postsLoading: action.payload };
     default:
       return state;
   }

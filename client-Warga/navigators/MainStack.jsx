@@ -13,6 +13,7 @@ import PostDetails from "../screens/PostDetails";
 import { Provider, useSelector } from "react-redux";
 import store from "../stores";
 import { useEffect, useState } from "react";
+import ServicesHistory from "../screens/ServicesHistory";
 
 const Stack = createNativeStackNavigator();
 
@@ -80,6 +81,13 @@ export default function MainStack() {
             <Stack.Screen
               name="PostDetails"
               component={PostDetails}
+              options={{
+                headerTitle: () => <Logo />,
+              }}
+            />
+            <Stack.Screen
+              name="ServicesHistory"
+              component={ServicesHistory}
               options={{
                 headerTitle: () => <Logo />,
               }}

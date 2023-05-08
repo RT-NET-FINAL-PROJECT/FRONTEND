@@ -7,9 +7,10 @@ import {
   Pressable,
   Text,
 } from "react-native";
-import { Foundation } from "@expo/vector-icons";
+import { Foundation, Feather } from "@expo/vector-icons";
 
 export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
+  const tanggalLahir = new Date(currentLoggedIn?.tanggal_lahir);
   return (
     <>
       <View
@@ -37,7 +38,7 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
           }}
           onPress={() => navigation.navigate("EditProfile")}
         >
-          Edit
+          <Feather name="edit" size={20} color="black" />
         </Text>
       </View>
       <View style={{ marginTop: 20 }}>
@@ -82,7 +83,11 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
         <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
           {"  "}
           {currentLoggedIn?.tanggal_lahir
-            ? currentLoggedIn?.tanggal_lahir
+            ? tanggalLahir?.toLocaleString("id-ID", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
             : "-"}
         </Text>
       </View>
