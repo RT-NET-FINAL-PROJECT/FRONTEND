@@ -70,18 +70,18 @@ export default function MyNavbar() {
             </Nav.Link>
             <Nav.Link 
                 as={Link} 
-                to={"/kas"} 
+                to={"/request"} 
                 style={{ 
                     color: 'rgba(59,7,11,255)', 
                     fontWeight: "bold", 
                     marginRight: "5px",
                     textDecoration: "none",
-                    borderBottom: location.pathname === "/kas" ? "2px solid rgba(59,7,11,255)" : "none", 
+                    borderBottom: location.pathname === "/request" ? "2px solid rgba(59,7,11,255)" : "none", 
                 }}
                 onMouseOver={(e) => e.target.style.backgroundColor = "#c4b5b6"} 
                 onMouseOut={(e) => e.target.style.backgroundColor = "white"}
                 >
-              INFO KEUANGAN RT
+              REQUEST WARGA
             </Nav.Link>
             <Nav.Link 
                 as={Link} 

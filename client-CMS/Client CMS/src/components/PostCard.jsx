@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
-function PostCard() {
+export default function PostCard() {
   return (
     <Card style={{borderColor:'rgba(59,7,11,255)'}}>
       <Card.Header 
@@ -60,4 +60,3 @@ function PostCard() {
   );
 }
 
-export default PostCard;

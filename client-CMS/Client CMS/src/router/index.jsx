@@ -10,16 +10,17 @@ import RegRTAdmin from '../pages/RegisterRTAdminPage.jsx'
 import RegRT from '../pages/RegisterRTPage'
 import WargaPage from '../pages/WargaPage'
 import AddWargaPage from '../pages/AddWargaPage'
+import WargaDetailPage from '../pages/WargaDetailPage'
 import EditWargaPage from '../pages/EditWargaPage'
 import DeleteWargaPage from '../pages/DeleteWargaPage'
 import LayananPage from '../pages/LayananPage'
 import AddLayananPage from '../pages/AddLayananPage'
 import EditLayananPage from '../pages/EditLayananPage'
 import DeleteLayananPage from '../pages/DeleteLayananPage'
-import KasPage from '../pages/KasPage'
-import AddKasPage from '../pages/AddKasPage'
-import EditKasPage from '../pages/EditKasPage'
-import DeleteKasPage from '../pages/DeleteKasPage'
+import RequestPage from '../pages/RequestPage'
+import AddRequestPage from '../pages/AddRequestPage'
+import EditRequestPage from '../pages/EditRequestPage'
+import DeleteRequestPage from '../pages/DeleteRequestPage'
 
 const router = createBrowserRouter([
     {   
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 element : <AddWargaPage />
             },
             {
+                path : "/warga/detail/:wargaId",
+                element : <WargaDetailPage />
+            },
+            {
                 path : "/warga/edit/:wargaId",
                 element : <EditWargaPage />
             },
@@ -80,20 +85,20 @@ const router = createBrowserRouter([
                 element : <DeleteLayananPage />
             },
             {
-                path : "/kas",
-                element : <KasPage />
+                path : "/request",
+                element : <RequestPage />
             },
             {
-                path : "/kas/add",
-                element : <AddKasPage />
+                path : "/request/add",
+                element : <AddRequestPage />
             },
             {
-                path : "/kas/edit/:kasId",
-                element : <EditKasPage />
+                path : "/request/edit/:requestId",
+                element : <EditRequestPage />
             },
             {
-                path : "/kas/delete/:kasId",
-                element : <DeleteKasPage />
+                path : "/request/delete/:requestId",
+                element : <DeleteRequestPage />
             },
             {
                 path : "/register-RT-Admin",
