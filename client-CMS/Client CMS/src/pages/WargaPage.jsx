@@ -4,10 +4,22 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import WargaRow from "../components/WargaRow";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWargas } from "../store/action/actionCreator";
+import LoadingScreen from "../components/LoadingScreen";
+import { useEffect } from "react";
 
 export default function WargaPage() {
+  const dispatch = useDispatch();
+  
+  useEffect(() => dispatch(fetchWargas()), [dispatch]);
+  const { wargas, loading } = useSelector(
+    (state) => state.warga
+  );
+
   return (
     <Container style={{ marginTop: "100px" }}>
+    {loading ? <LoadingScreen /> : (
       <>
         <h1
           style={{
@@ -50,24 +62,14 @@ export default function WargaPage() {
               </tr>
             </thead>
             <tbody >
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
-                <WargaRow />
+                {wargas.map((warga, index) => {
+                    return <WargaRow warga={warga} key={warga.id} index={index} />;
+                  })}
             </tbody>
           </Table>
         </div>
-      </>
+        </>
+      )}
     </Container>
   );
 }

@@ -2,19 +2,19 @@ import React from "react";
 import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom";
 
-export default function WargaRow() {
-
+export default function WargaRow({ warga, index }) {
+    console.log(warga)
     return (
         <tr >
-            <td>No</td>
-            <td>Nama Lengkap</td>
-            <td>Nomor Telepon</td>
-            <td>Email</td>
-            <td>Status Akun</td>
-            <td>Role Akun</td>
+            <td>{++index}</td>
+            <td>{warga.namaLengkap}</td>
+            <td>{warga.nomorTelp}</td>
+            <td>{warga.email}</td>
+            <td>{warga.status}</td>
+            <td>{warga.role}</td>
             <td>
                 <div className="d-flex gap-2 justify-content-center">
-                    <Link to={`/warga/detail/:wargaId`}>
+                    <Link to={`/warga/detail/${warga.id}`}>
                         <Button 
                             style={{
                                 backgroundColor:'white', 
@@ -26,7 +26,7 @@ export default function WargaRow() {
                         Lihat Detil Data
                         </Button>
                     </Link>
-                    <Link to={`/warga/edit/:wargaId`}>
+                    <Link to={`/warga/edit/${warga.id}`}>
                         <Button 
                             style={{
                                 backgroundColor:'grey', 
@@ -38,7 +38,7 @@ export default function WargaRow() {
                         Ubah Detil Data
                         </Button>
                     </Link>
-                    <Link to={`/warga/delete/:wargaId`}>
+                    <Link to={`/warga/delete/${warga.id}`}>
                         <Button 
                         style={{
                             backgroundColor:'rgba(59,7,11,255)', 

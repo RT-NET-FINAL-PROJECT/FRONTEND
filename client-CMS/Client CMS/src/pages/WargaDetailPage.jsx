@@ -23,7 +23,7 @@ export default function WargaDetailPage() {
             <div style={{textAlign:"end"}}>
               <Button
                   as={Link} 
-                  to={"/warga/edit/:wargaId"}
+                  to={`/warga/edit/${warga.id}`}
                   style={{
                       backgroundColor:'white', 
                       borderColor:'rgba(59,7,11,255)',
@@ -35,7 +35,7 @@ export default function WargaDetailPage() {
               </Button>
               <Button
                   as={Link} 
-                  to={"/warga/delete/:wargaId"}
+                  to={`/warga/delete/${warga.id}`}
                   style={{
                       backgroundColor:'rgba(59,7,11,255)', 
                       borderColor:'rgba(59,7,11,255)'

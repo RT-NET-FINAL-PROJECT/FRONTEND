@@ -3,15 +3,22 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo RT NET Horizontal.png"
 
 export default function MyNavbar() {
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     setExpanded(!expanded);
+  };
+
+  const localLogOut = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (
@@ -138,6 +145,7 @@ export default function MyNavbar() {
                 }} 
                 onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
                 onMouseOut={(e) => e.target.style.color = "white"}
+                onClick={localLogOut}
             >
                 Logout
             </Button>

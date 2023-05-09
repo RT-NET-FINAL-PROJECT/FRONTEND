@@ -2,7 +2,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
-export default function LayananCard() {
+export default function LayananCard({ service }) {
+  console.log(service)
   return (
     <Card style={{borderColor:'rgba(59,7,11,255)', margin:"40px"}}>
       <Card.Header 
@@ -14,18 +15,17 @@ export default function LayananCard() {
             color:"white"
         }}
         >
-        Layanan Warga RT X
+        Layanan Warga RT {service.Rt.rt}
       </Card.Header>
       <Card.Body>
-        <Card.Title>Nama Layanan</Card.Title>
+        <Card.Title>{service.name}</Card.Title>
         <Card.Text>
-          Deskripsi Layanan:
-
-          Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+          Deskripsi Layanan: &emsp;&emsp;:&ensp;
+          {service.deskripsi}
         </Card.Text>
         <Button
             as={Link} 
-            to={"/layanan/edit/:layananId"}
+            to={`/layanan/edit/${service.id}`}
             style={{
                 backgroundColor:'white', 
                 borderColor:'rgba(59,7,11,255)',
@@ -37,7 +37,7 @@ export default function LayananCard() {
         </Button>
         <Button
             as={Link} 
-            to={"/layanan/delete/:layananId"}
+            to={`/layanan/delete/${service.id}`}
             style={{
                 backgroundColor:'rgba(59,7,11,255)', 
                 borderColor:'rgba(59,7,11,255)'
