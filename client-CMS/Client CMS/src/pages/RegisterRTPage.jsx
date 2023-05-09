@@ -71,12 +71,12 @@ export default function RegisterRTPage() {
                             <option value="3">Rt 3</option>
                         </Form.Control>
                     </Form.Group>
+                    <Button type="submit" style={{ marginTop:"30px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}>Submit
+                    </Button>
                     <Link to={'/login'}>
-                        <Button type="submit" style={{ marginTop:"30px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}>Back to Log in
+                        <Button type="submit" style={{ marginTop:"30px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}>Back to Log in
                         </Button>
                     </Link>
-                    <Button type="submit" style={{ marginTop:"30px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}>Submit
-                    </Button>
                 </Form>
             </Container>
         </>

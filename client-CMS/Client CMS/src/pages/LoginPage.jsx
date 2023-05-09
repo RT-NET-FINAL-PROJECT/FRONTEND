@@ -3,10 +3,10 @@ import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
-import Logo from "../assets//Logo RT-Net-No-BG.png"
+import Logo from "../assets/Logo RT-Net-No-BG.png"
 import { Link, useNavigate } from "react-router-dom";
 import MyAlert from "../components/MyAlert";
-import { baseUrl }  from "../config/api";
+import { baseUrl }  from "../config/api"
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function LoginPage() {
       password,
     };
     setLoading(true);
-    fetch(baseUrl + "login", {
+    fetch(baseUrl + "rt/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,11 +104,7 @@ export default function LoginPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Link to={'/register-RT'}>
-            <Button type="submit" style={{ marginTop: "15px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}>Register Here
-            </Button>
-          </Link>
-          <Button type="submit" style={{ marginTop: "15px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}>
+          <Button type="submit" style={{ marginTop: "15px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}>
           {loading && <>
             <Spinner
               as="span"
@@ -124,6 +120,10 @@ export default function LoginPage() {
           {!loading && <span>Log in</span>}
           {loading && <span>Loading ...</span>}
           </Button>
+          <Link to={'/register-RT'}>
+          <Button type="submit" style={{ marginTop: "15px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}>Register Here
+          </Button>
+        </Link>
         </Form>
       </Container>
     </>
