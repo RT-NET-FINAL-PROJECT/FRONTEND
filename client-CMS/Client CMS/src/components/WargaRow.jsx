@@ -2,16 +2,16 @@ import React from "react";
 import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom";
 
-export default function WargaRow() {
-
+export default function WargaRow({ warga, index }) {
+    console.log(warga)
     return (
         <tr >
-            <td>No</td>
-            <td>Nama Lengkap</td>
-            <td>Nomor Telepon</td>
-            <td>Email</td>
-            <td>Status Akun</td>
-            <td>Role Akun</td>
+            <td>{++index}</td>
+            <td>{warga.namaLengkap}</td>
+            <td>{warga.nomorTelp}</td>
+            <td>{warga.email}</td>
+            <td>{warga.status}</td>
+            <td>{warga.role}</td>
             <td>
                 <div className="d-flex gap-2 justify-content-center">
                     <Link to={`/warga/detail/:wargaId`}>

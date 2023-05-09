@@ -19,7 +19,8 @@ export default function RegisterRTBaruPage() {
     kelurahan:"",
     kecamatan:"",
     kotaKabupaten:"",
-    provinsi:""
+    provinsi:"",
+    link_grup_wa:""
   });
 
   const changeHandler = (event) => {
@@ -72,7 +73,11 @@ export default function RegisterRTBaruPage() {
       setShowAlert(true)
       return
     }
-
+    if (!userData.link_grup_wa) {
+      setErrorMessage('Link Grup WhatsApp dibutuhkan')
+      setShowAlert(true)
+      return
+    }
     const objToPass = { ...userData };
 
     fetch(baseUrl + "admin/register", {
@@ -106,11 +111,15 @@ export default function RegisterRTBaruPage() {
       })
       .finally(() => {
         const afterSubmitObj = {
-          namaLengkap: "",
-          nomorTelp: "",
-          email: "",
-          password: "",
-          nomorKtp: ""
+          kepala_rt: "",
+          nik_rt: "",
+          rt: "",
+          rw: "",
+          kelurahan:"",
+          kecamatan:"",
+          kotaKabupaten:"",
+          provinsi:"",
+          link_grup_wa:""
         };
         setUserData(afterSubmitObj);
       })
@@ -142,6 +151,16 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicWAGroup">
+          <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Link WhatsApp Group RT:</Form.Label>
+          <Form.Control className="form-control placeholder-color"
+            name="link_grup_wa"
+            type="text"
+            placeholder="Enter Link WA Group"
+            onChange={changeHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
+          />
+        </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicRT">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>RT :</Form.Label>
             <Form.Control className="form-control placeholder-color"
