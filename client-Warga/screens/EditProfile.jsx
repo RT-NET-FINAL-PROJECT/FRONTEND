@@ -323,20 +323,38 @@ export default function EditProfile({ navigation }) {
                 onChangeText={(text) => setNoKk(text.replace(/[^0-9]/g, ""))}
               />
             </View>
-            <Button
-              title="Submit"
-              containerStyle={{
-                height: 40,
-                width: "100%",
-                textAlign: "start",
-                marginTop: 15,
-              }}
-              buttonStyle={{
-                backgroundColor: "#582d2f",
-                borderRadius: 8,
-              }}
-              onPress={() => handleSubmit()}
-            />
+            {loading ? (
+              <Button
+                title="Submit"
+                containerStyle={{
+                  height: 40,
+                  width: "100%",
+                  textAlign: "start",
+                  marginTop: 15,
+                }}
+                buttonStyle={{
+                  backgroundColor: "#582d2f",
+                  borderRadius: 8,
+                }}
+                type="solid"
+                loading
+              />
+            ) : (
+              <Button
+                title="Submit"
+                containerStyle={{
+                  height: 40,
+                  width: "100%",
+                  textAlign: "start",
+                  marginTop: 15,
+                }}
+                buttonStyle={{
+                  backgroundColor: "#582d2f",
+                  borderRadius: 8,
+                }}
+                onPress={() => handleSubmit()}
+              />
+            )}
           </Card>
         </View>
       </ScrollView>

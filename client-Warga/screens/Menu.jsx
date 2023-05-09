@@ -76,7 +76,7 @@ export default function Menu({ navigation }) {
           }}
         >
           <Button
-            title="Daftarkan Tamu"
+            title="Tamu"
             containerStyle={{
               height: 40,
               width: "100%",
@@ -89,7 +89,7 @@ export default function Menu({ navigation }) {
             }}
             titleStyle={{ color: "black" }}
             onPress={() => {
-              navigation.navigate("RegisterGuest");
+              navigation.navigate("Guest");
             }}
           />
         </View>
@@ -164,7 +164,7 @@ export default function Menu({ navigation }) {
           />
           {services?.map((service, index) => {
             return (
-              <>
+              <View key={index}>
                 <View
                   style={{
                     borderColor: "#ededed",
@@ -193,7 +193,7 @@ export default function Menu({ navigation }) {
                     })
                   }
                 />
-              </>
+              </View>
             );
           })}
         </View>

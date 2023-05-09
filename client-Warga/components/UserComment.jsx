@@ -6,10 +6,27 @@ import {
   ScrollView,
   Stack,
   TextInput,
+  Alert,
 } from "react-native";
 import { Text, Card, Button, Icon, Avatar, Skeleton } from "@rneui/themed";
+import { Entypo } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { deleteComment } from "../stores/action/actionCreator";
 
-export const UserComment = ({ comment }) => {
+export const UserComment = ({ comment, currentLoggedIn, postId }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = async (id) => {
+    try {
+      console.log(id);
+      Alert.alert("", "Hapus Komentar?", [
+        { text: "Cancel", onPress: () => console.log("Cancel Pressed") },
+        { text: "OK", onPress: () => dispatch(deleteComment(id, postId)) },
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Card.Divider />
@@ -28,9 +45,26 @@ export const UserComment = ({ comment }) => {
           style={styles.icon}
         />
         <View style={{ marginLeft: 10, flexShrink: 1 }}>
-          <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-            {comment?.User?.namaLengkap}
-          </Text>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
+              {comment?.User?.namaLengkap}
+            </Text>
+
+            {currentLoggedIn?.id === comment?.user_id && (
+              <Entypo
+                name="dots-three-horizontal"
+                size={16}
+                color="grey"
+                onPress={() => handleDelete(comment?.id)}
+              />
+            )}
+          </View>
           {/* <Text style={{ textAlign: "right", marginBottom: 10 }}>Tanggal</Text> */}
           <Text>{comment?.comment}</Text>
         </View>

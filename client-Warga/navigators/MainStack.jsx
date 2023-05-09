@@ -14,6 +14,7 @@ import { Provider, useSelector } from "react-redux";
 import store from "../stores";
 import { useEffect, useState } from "react";
 import ServicesHistory from "../screens/ServicesHistory";
+import Guest from "../screens/Guest";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,13 @@ export default function MainStack() {
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}
+              options={{
+                headerTitle: () => <Logo />,
+              }}
+            />
+            <Stack.Screen
+              name="Guest"
+              component={Guest}
               options={{
                 headerTitle: () => <Logo />,
               }}

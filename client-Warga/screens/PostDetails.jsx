@@ -11,14 +11,20 @@ import {
 import { Text, Card, Button, Icon, Avatar, Skeleton } from "@rneui/themed";
 import { SimpleLineIcons, Entypo } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { commentar, getPostDetails } from "../stores/action/actionCreator";
+import {
+  commentar,
+  getCurrentLoggedIn,
+  getPostDetails,
+} from "../stores/action/actionCreator";
 import { UserComment } from "../components/UserComment";
 
-export default function PostDetails({ route, comments }) {
+export default function PostDetails({ route, comments, navigation }) {
   const { postId } = route.params;
   const [postsLoading, setPostsLoading] = useState(false);
+  const [commentLoading, setCommentLoading] = useState(false);
   const [comment, setComment] = useState();
   const { postDetails: post } = useSelector((state) => state.posts);
+  const { currentLoggedIn } = useSelector((state) => state.users);
 
   console.log(comment);
 
@@ -27,6 +33,7 @@ export default function PostDetails({ route, comments }) {
   const fetchPosts = async () => {
     try {
       setPostsLoading(true);
+      await dispatch(getCurrentLoggedIn());
       await dispatch(getPostDetails(postId));
     } catch (error) {
       console.log(error);
@@ -41,15 +48,21 @@ export default function PostDetails({ route, comments }) {
 
   const handleSubmit = async (postId) => {
     try {
+      setCommentLoading(true);
+
       if (!comment) {
         Alert.alert("", "Masukkan Komentar", [
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]);
+        setCommentLoading(false);
         return;
       }
       await dispatch(commentar(postId, comment));
+      await setComment("");
     } catch (error) {
       console.log(error);
+    } finally {
+      setCommentLoading(false);
     }
   };
 
@@ -120,29 +133,57 @@ export default function PostDetails({ route, comments }) {
                   value={comment}
                   style={styles.input}
                 />
-                <Button
-                  title="Comment"
-                  containerStyle={{
-                    height: 40,
-                    width: "100%",
-                    borderWidth: 1,
-                    borderColor: "#c5c5c4",
-                    borderRadius: 8,
-                    // marginHorizontal: 50,
-                    // marginVertical: 10,
+                {commentLoading ? (
+                  <Button
+                    title="Solid"
+                    containerStyle={{
+                      marginTop: 8,
+                      height: 40,
+                      width: "100%",
+                      borderWidth: 1,
+                      borderColor: "#c5c5c4",
+                      borderRadius: 8,
+                      marginTop: 8,
+                    }}
+                    buttonStyle={{
+                      backgroundColor: "#582d2f",
+                      borderRadius: 8,
+                    }}
+                    type="solid"
+                    loading
+                  />
+                ) : (
+                  <Button
+                    title="Comment"
+                    containerStyle={{
+                      height: 40,
+                      width: "100%",
+                      borderWidth: 1,
+                      borderColor: "#582d2f",
+                      borderRadius: 8,
+                      // marginHorizontal: 50,
+                      // marginVertical: 10,
 
-                    marginTop: 8,
-                  }}
-                  titleStyle={{ color: "grey" }}
-                  buttonStyle={{
-                    backgroundColor: "white",
-                    borderRadius: 8,
-                  }}
-                  onPress={() => handleSubmit(postId)}
-                />
+                      marginTop: 8,
+                    }}
+                    titleStyle={{ color: "white" }}
+                    buttonStyle={{
+                      backgroundColor: "#582d2f",
+                      borderRadius: 8,
+                    }}
+                    onPress={() => handleSubmit(postId)}
+                  />
+                )}
               </View>
               {post?.Comments?.map((comment, index) => {
-                return <UserComment comment={comment} key={index} />;
+                return (
+                  <UserComment
+                    comment={comment}
+                    currentLoggedIn={currentLoggedIn}
+                    postId={postId}
+                    key={index}
+                  />
+                );
               })}
             </Card>
           </View>

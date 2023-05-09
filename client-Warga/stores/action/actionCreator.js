@@ -243,6 +243,26 @@ export function commentar(id, comment) {
   };
 }
 
+export function deleteComment(commentId, postId) {
+  return async (dispatch, getState) => {
+    try {
+      const access_token = await AsyncStorage.getItem("access_token");
+      // const userId = await AsyncStorage.getItem("userId");
+      const response = await axios({
+        method: "delete",
+        url: baseUrl + "/users/comment/" + commentId,
+        headers: {
+          access_token,
+        },
+      });
+      await dispatch(getPostDetails(postId));
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+}
+
 export function getAllServices() {
   return async (dispatch, getState) => {
     try {
@@ -276,6 +296,55 @@ export function editProfileDetails(userData) {
         },
         data: {
           ...userData,
+        },
+      });
+      dispatch(getCurrentLoggedIn());
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+}
+
+export function addGuest(guestData) {
+  return async (dispatch, getState) => {
+    const { nama, nomorKtp } = guestData;
+    try {
+      console.log(guestData);
+      if (!nama || !nomorKtp) {
+        throw "Lengkapi seluruh kolom";
+      }
+      const access_token = await AsyncStorage.getItem("access_token");
+      // const userId = await AsyncStorage.getItem("userId");
+      const response = await axios({
+        method: "post",
+        url: baseUrl + "/users/guest",
+        headers: {
+          access_token,
+        },
+        data: {
+          name: nama,
+          nomorKtp,
+        },
+      });
+      dispatch(getCurrentLoggedIn());
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+}
+
+export function deleteGuest(id) {
+  return async (dispatch, getState) => {
+    try {
+      const access_token = await AsyncStorage.getItem("access_token");
+      // const userId = await AsyncStorage.getItem("userId");
+      const response = await axios({
+        method: "delete",
+        url: baseUrl + "/users/guest/" + id,
+        headers: {
+          access_token,
         },
       });
       dispatch(getCurrentLoggedIn());
