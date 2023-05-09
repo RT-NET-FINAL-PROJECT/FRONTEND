@@ -51,7 +51,9 @@ export default function LoginPage() {
           // console.log(response)
           switch (response.status) {
             case 401:
-              throw new Error("Wrong email or password!");
+              throw new Error("Email / Password salah");
+            case 403:
+              throw new Error("Anda tidak memiliki hak akses");
             default:
               throw new Error("Internal server error");
           }

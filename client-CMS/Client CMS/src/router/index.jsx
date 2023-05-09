@@ -27,11 +27,11 @@ const router = createBrowserRouter([
     {   
         path: "",
         element : <Layout />,
-        // loader : () => {
-        //     const token = localStorage.getItem('access_token')
-        //     if(!token) throw redirect ('/login')
-        //     return null
-        // },
+        loader : () => {
+            const token = localStorage.getItem('access_token')
+            if(!token) throw redirect ('/login')
+            return null
+        },
         children : [
             {
                 path : "/",
@@ -113,20 +113,20 @@ const router = createBrowserRouter([
     },
     {
         path : '/login',
-        // loader : () => {
-        //     const token = localStorage.getItem('access_token')
-        //     if(token) throw redirect ('/')
-        //     return null
-        // },
+        loader : () => {
+            const token = localStorage.getItem('access_token')
+            if(token) throw redirect ('/')
+            return null
+        },
         element : <LoginPage />
     },
     {
         path : "/register-RT",
-        // loader : () => {
-        //     const token = localStorage.getItem('access_token')
-        //     if(token) throw redirect ('/')
-        //     return null
-        // },
+        loader : () => {
+            const token = localStorage.getItem('access_token')
+            if(token) throw redirect ('/')
+            return null
+        },
         element : <RegisterRTPage />
     }
 ])
