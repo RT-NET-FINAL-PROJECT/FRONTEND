@@ -16,6 +16,7 @@ import { getCurrentLoggedIn } from "../stores/action/actionCreator";
 import ProfileDetailsCard from "../components/ProfileDetailsCard";
 import ProfileBerkasCard from "../components/ProfileBerkasCard";
 import ProfilePictureCard from "../components/ProfilePictureCard";
+import ProfileVehicleCard from "../components/ProfileVehicleCard";
 
 export default function Profile({ navigation }) {
   const { currentLoggedIn } = useSelector((state) => state.users);
@@ -59,6 +60,10 @@ export default function Profile({ navigation }) {
             {/* END ProfileDetails Component */}
           </Card>
           <ProfileBerkasCard
+            currentLoggedIn={currentLoggedIn}
+            navigation={navigation}
+          />
+          <ProfileVehicleCard
             currentLoggedIn={currentLoggedIn}
             navigation={navigation}
           />

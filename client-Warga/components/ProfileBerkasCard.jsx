@@ -9,13 +9,100 @@ import {
 } from "react-native";
 import { Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
 import { Feather } from "@expo/vector-icons";
+import { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 
 export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
+  const [ktpImg, setKtpImg] = useState(null);
+  const [kkImg, setKkImg] = useState(null);
+  const [aktaImg, setAktaImg] = useState(null);
+
+  const pickKtpImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      // aspect: [16, 9],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const { uri } = result.assets[0];
+      const ext = uri.split(".").pop();
+      const name = uri.split("/").pop();
+      setKtpImg({
+        uri: uri,
+        type: `image/${ext}`,
+        name,
+      });
+    }
+  };
+
+  const pickKkImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      // aspect: [16, 9],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const { uri } = result.assets[0];
+      const ext = uri.split(".").pop();
+      const name = uri.split("/").pop();
+      setKkImg({
+        uri: uri,
+        type: `image/${ext}`,
+        name,
+      });
+    }
+  };
+
+  const pickAktaImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      // aspect: [16, 9],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const { uri } = result.assets[0];
+      const ext = uri.split(".").pop();
+      const name = uri.split("/").pop();
+      setAktaImg({
+        uri: uri,
+        type: `image/${ext}`,
+        name,
+      });
+    }
+  };
+
   return (
     <Card containerStyle={styles.container}>
       <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
         Berkas Foto
       </Text>
+      {ktpImg && (
+        <Image
+          source={{ uri: ktpImg.uri }}
+          style={{ width: 200, height: 200 }}
+        />
+      )}
+      {kkImg && (
+        <Image
+          source={{ uri: kkImg.uri }}
+          style={{ width: 200, height: 200 }}
+        />
+      )}
+      {aktaImg && (
+        <Image
+          source={{ uri: aktaImg.uri }}
+          style={{ width: 200, height: 200 }}
+        />
+      )}
 
       <View style={{ marginTop: 30 }}>
         <View style={{ flexDirection: "row" }}>
@@ -38,7 +125,7 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
               textAlignVertical: "center",
               color: "blue",
             }}
-            onPress={() => navigation.navigate("EditProfile")}
+            onPress={pickKtpImage}
           >
             <Feather name="edit" size={20} color="black" />
           </Text>
@@ -70,7 +157,7 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
               textAlignVertical: "center",
               color: "blue",
             }}
-            onPress={() => navigation.navigate("EditProfile")}
+            onPress={pickKkImage}
           >
             <Feather name="edit" size={20} color="black" />
           </Text>
@@ -101,7 +188,7 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
               textAlignVertical: "center",
               color: "blue",
             }}
-            onPress={() => navigation.navigate("EditProfile")}
+            onPress={pickAktaImage}
           >
             <Feather name="edit" size={20} color="black" />
           </Text>

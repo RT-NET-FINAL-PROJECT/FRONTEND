@@ -9,9 +9,39 @@ import {
   Text,
 } from "react-native";
 import { Foundation, Feather } from "@expo/vector-icons";
-
+import * as ImagePicker from "expo-image-picker";
 import { Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
+import { baseUrl } from "../config/url";
+
 export default function ProfilePictureCard({ currentLoggedIn, navigation }) {
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    // console.log(result);
+
+    if (!result.canceled) {
+      const { uri } = result.assets[0];
+      const ext = uri.split(".").pop();
+      const name = uri.split("/").pop();
+      setImage({
+        uri: uri,
+        type: `image/${ext}`,
+        name,
+      });
+    }
+  };
+
+  console.log(image);
+
   return (
     <>
       <View
@@ -37,7 +67,7 @@ export default function ProfilePictureCard({ currentLoggedIn, navigation }) {
             textAlignVertical: "center",
             color: "blue",
           }}
-          onPress={() => navigation.navigate("EditProfile")}
+          onPress={pickImage}
         >
           <Feather name="edit" size={20} color="black" />
         </Text>

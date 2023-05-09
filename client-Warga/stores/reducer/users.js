@@ -10,7 +10,7 @@ export default function userReducer(
     currentLoggedIn: [],
     errors: [],
     usersLoading: false,
-    login: false,
+    login: "",
   },
   action
 ) {
