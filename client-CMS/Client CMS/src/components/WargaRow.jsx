@@ -14,7 +14,7 @@ export default function WargaRow({ warga, index }) {
             <td>{warga.role}</td>
             <td>
                 <div className="d-flex gap-2 justify-content-center">
-                    <Link to={`/warga/detail/:wargaId`}>
+                    <Link to={`/warga/detail/${warga.id}`}>
                         <Button 
                             style={{
                                 backgroundColor:'white', 
@@ -26,7 +26,7 @@ export default function WargaRow({ warga, index }) {
                         Lihat Detil Data
                         </Button>
                     </Link>
-                    <Link to={`/warga/edit/:wargaId`}>
+                    <Link to={`/warga/edit/${warga.id}`}>
                         <Button 
                             style={{
                                 backgroundColor:'grey', 
@@ -38,7 +38,7 @@ export default function WargaRow({ warga, index }) {
                         Ubah Detil Data
                         </Button>
                     </Link>
-                    <Link to={`/warga/delete/:wargaId`}>
+                    <Link to={`/warga/delete/${warga.id}`}>
                         <Button 
                         style={{
                             backgroundColor:'rgba(59,7,11,255)', 

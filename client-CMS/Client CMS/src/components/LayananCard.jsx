@@ -25,7 +25,7 @@ export default function LayananCard({ service }) {
         </Card.Text>
         <Button
             as={Link} 
-            to={"/layanan/edit/:layananId"}
+            to={`/layanan/edit/${service.id}`}
             style={{
                 backgroundColor:'white', 
                 borderColor:'rgba(59,7,11,255)',
@@ -37,7 +37,7 @@ export default function LayananCard({ service }) {
         </Button>
         <Button
             as={Link} 
-            to={"/layanan/delete/:layananId"}
+            to={`/layanan/delete/${service.id}`}
             style={{
                 backgroundColor:'rgba(59,7,11,255)', 
                 borderColor:'rgba(59,7,11,255)'
