@@ -9,7 +9,6 @@ import { baseUrl } from "../config/api.js"
 export default function RegisterRTAdminPage() {
 
     const navigate = useNavigate()
-
     const [showAlert, setShowAlert] = useState(() => false)
     const [errorMessage, setErrorMessage] = useState('')
     const [userData, setUserData] = useState({
@@ -70,7 +69,7 @@ export default function RegisterRTAdminPage() {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    console.log(response)
+                    // console.log(response)
                     switch (response.status) {
                         case 400: throw new Error('Email / nomor telepon sudah terdaftar')
                         default: throw new Error('Internal server error.')
