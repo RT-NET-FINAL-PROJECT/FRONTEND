@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
 export default function LayananCard({ service }) {
-  console.log(service)
+  // console.log(service)
   return (
     <Card style={{borderColor:'rgba(59,7,11,255)', margin:"40px"}}>
       <Card.Header 

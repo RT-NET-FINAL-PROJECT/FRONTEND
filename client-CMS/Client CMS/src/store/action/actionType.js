@@ -1,6 +1,8 @@
 export const POSTS_FETCH_ALL = "posts/fetch";
 export const POSTS_FETCH_LOADING = "posts/loading"
 export const POSTS_ERROR = "posts/error";
+export const POSTS_ADD_RESPONSE = "posts/";
+export const POSTS_ADD_LOADING = "posts/loading";
 
 export const SERVICES_FETCH_ALL = "services/fetch";
 export const SERVICES_FETCH_LOADING = "services/loading"

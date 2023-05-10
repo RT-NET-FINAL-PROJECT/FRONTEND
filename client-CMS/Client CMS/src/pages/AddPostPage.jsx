@@ -3,74 +3,133 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addPost } from "../store/action/actionCreator";
+import { POSTS_ADD_RESPONSE, POSTS_ERROR } from "../store/action/actionType";
+import MyModalsWrong from "../components/MyModalsWrong";
 
 export default function AddPostPage() {
 
+  const [postData, setPostData] = useState({
+    name: "",
+    deskripsi: "",
+    kategori: "",
+    lokasi: "",
+    biaya:""
+  });
+
+  const dispatch = useDispatch();
+  const [modalShow, setModalShow] = useState(false);
+  const { postResponse, loading, errorMessage } = useSelector((state) => state.post)
+  const navigate = useNavigate();
+
+  const postDataHandler = (event) => {
+    const { name, value } = event.target;
+    const obj = { ...postData, [name]: value };
+    // console.log(obj);
+    setPostData(obj);
+  };
+
+  useEffect(() => {
+    dispatch({ type: POSTS_ADD_RESPONSE, payload: null })
+    dispatch({ type: POSTS_ERROR, payload: "" })
+  }, [dispatch]);
+
+  const submitNewPost = (event) => {
+    event.preventDefault();
+
+    dispatch(addPost(postData))
+
+  };
+
+  useEffect(() => {
+    if (postResponse) {
+      navigate('/')
+    }
+  }, [navigate, postResponse])
+
+  useEffect(() => {
+    if (errorMessage) {
+      setModalShow(true)
+    }
+
+    return () => dispatch({ type: POSTS_ERROR, payload: "" })
+  }, [errorMessage, dispatch])
+
   return (
-    <Container className="w-50" style={{marginTop:"100px"}}>
-      <h1 style={{color:'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize:"35px",textAlign:"center"}}>Tambahkan Informasi Kegiatan di RT X</h1>
-      <Form style={{borderColor:'rgba(59,7,11,255)', marginTop: "25px"}}>
-          <Form.Group >
-            <Form.Label style={{color:'rgba(59,7,11,255)' , marginTop: "5px"}}>Nama Kegiatan</Form.Label>
-            <Form.Control
-              name="nama"
-              type="text"
-              placeholder="Nama Kegiatan"
-              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
-            />
-            <Form.Label style={{color:'rgba(59,7,11,255)', marginTop: "10px"}}>Deskripsi Kegiatan</Form.Label>
-            <Form.Control
-              name="deskripsi"
-              as="textarea"
-              rows={8}
-              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
-            />
-            <Form.Label style={{color:'rgba(59,7,11,255)', marginTop: "10px"}}>Kategori Kegiatan</Form.Label>
-            <Form.Control
-              name="kategori"
-              type="text"
-              placeholder="Kategori Kegiatan"
-              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
-            />
-            <Form.Label style={{color:'rgba(59,7,11,255)', marginTop: "10px"}}>Lokasi Kegiatan</Form.Label>
-            <Form.Control
-              name="lokasi"
-              type="text"
-              placeholder="Lokasi Kegiatan"
-              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
-            />
-            <Form.Label style={{color:'rgba(59,7,11,255)', marginTop: "10px"}}>Biaya Iuran Kegiatan</Form.Label>
-            <Form.Control
-              name="biaya"
-              type="text"
-              placeholder="Biaya Iuran Kegiatan"
-              style={{color:'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px"}}
-            />
-          </Form.Group>
-          <Link to={'/'}>
+    <Container className="w-50" style={{ marginTop: "100px" }}>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize: "35px", textAlign: "center" }}>Tambahkan Informasi Kegiatan di RT X</h1>
+      <Form onSubmit={submitNewPost} style={{ borderColor: 'rgba(59,7,11,255)', marginTop: "25px" }}>
+        <Form.Group >
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "5px" }}>Nama Kegiatan</Form.Label>
+          <Form.Control
+            name="name"
+            type="text"
+            placeholder="Nama Kegiatan"
+            onChange={postDataHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Deskripsi Kegiatan</Form.Label>
+          <Form.Control
+            name="deskripsi"
+            as="textarea"
+            rows={8}
+            onChange={postDataHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Kategori Kegiatan</Form.Label>
+          <Form.Control
+            name="kategori"
+            type="text"
+            placeholder="Kategori Kegiatan"
+            onChange={postDataHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Lokasi Kegiatan</Form.Label>
+          <Form.Control
+            name="lokasi"
+            type="text"
+            placeholder="Lokasi Kegiatan"
+            onChange={postDataHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Biaya Iuran Kegiatan</Form.Label>
+          <Form.Control
+            name="biaya"
+            type=""
+            placeholder="Biaya Iuran Kegiatan"
+            onChange={postDataHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
+        </Form.Group>
+        <Link to={'/'}>
           <Button
             style={{
               marginTop: "30px",
-              backgroundColor:'white', 
-              borderColor:'rgba(59,7,11,255)',
-              color:'rgba(59,7,11,255)',
-              marginRight:'10px',
-            }} 
+              backgroundColor: 'white',
+              borderColor: 'rgba(59,7,11,255)',
+              color: 'rgba(59,7,11,255)',
+              marginRight: '10px',
+            }}
           >
-          Batalkan
+            Batalkan
           </Button>
-        </Link>  
-        <Button 
+        </Link>
+        <Button
           style={{
             marginTop: "30px",
-            backgroundColor:'rgba(59,7,11,255)', 
-            borderColor:'rgba(59,7,11,255)'
-          }} 
+            backgroundColor: 'rgba(59,7,11,255)',
+            borderColor: 'rgba(59,7,11,255)'
+          }}
           type="submit"
         >
           Tambahkan
         </Button>
       </Form>
+      {modalShow && (
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='Internal server error' />
+      )}
     </Container>
   );
 }

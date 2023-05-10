@@ -9,13 +9,15 @@ import { useEffect } from "react";
 
 export default function HomePage() {
 
-  const dispatch = useDispatch();
-
-  useEffect(() => dispatch(fetchPosts()), [dispatch]);
   const { posts, loading } = useSelector(
     (state) => state.post
   );
+  
+  const dispatch = useDispatch();
 
+  useEffect(() => dispatch(fetchPosts()), [dispatch]);
+  
+  console.log(posts)
   return (
     <Container style={{ marginTop: "100px" }}>
       {loading ? <LoadingScreen /> : (

@@ -5,6 +5,8 @@ import {
     POSTS_ERROR,
     POSTS_FETCH_ALL,
     POSTS_FETCH_LOADING,
+    POSTS_ADD_LOADING,
+    POSTS_ADD_RESPONSE,
     SERVICES_ERROR,
     SERVICES_FETCH_ALL,
     SERVICES_FETCH_LOADING,
@@ -68,6 +70,36 @@ import {
       });
     };
   };
+
+  export const addPost = (payload) => {
+    return (dispatch, getState) => {
+      dispatch({type : POSTS_ADD_LOADING, payload : true})
+      fetch( baseUrl + "event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          access_token: localStorage.getItem("access_token"),
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({type : POSTS_ADD_RESPONSE, payload : data})
+        })
+        .catch((error) => {
+          dispatch({type : POSTS_ERROR, payload : error?.message })
+        })
+        .finally( _ => {
+          dispatch({type : POSTS_ADD_LOADING, payload : false})
+        })
+    }
+  }
   
   export const fetchServices = () => {
     return (dispatch) => {

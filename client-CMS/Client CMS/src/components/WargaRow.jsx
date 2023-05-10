@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom";
 
 export default function WargaRow({ warga, index }) {
-    console.log(warga)
+    // console.log(warga)
     return (
         <tr >
             <td>{++index}</td>
