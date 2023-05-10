@@ -85,24 +85,6 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
       <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
         Berkas Foto
       </Text>
-      {ktpImg && (
-        <Image
-          source={{ uri: ktpImg.uri }}
-          style={{ width: 200, height: 200 }}
-        />
-      )}
-      {kkImg && (
-        <Image
-          source={{ uri: kkImg.uri }}
-          style={{ width: 200, height: 200 }}
-        />
-      )}
-      {aktaImg && (
-        <Image
-          source={{ uri: aktaImg.uri }}
-          style={{ width: 200, height: 200 }}
-        />
-      )}
 
       <View style={{ marginTop: 30 }}>
         <View style={{ flexDirection: "row" }}>
@@ -125,7 +107,11 @@ export default function ProfileBerkasCard({ currentLoggedIn, navigation }) {
               textAlignVertical: "center",
               color: "blue",
             }}
-            onPress={pickKtpImage}
+            onPress={() =>
+              navigation.navigate("EditProfileKtpImg", {
+                nama: currentLoggedIn?.namaLengkap,
+              })
+            }
           >
             <Feather name="edit" size={20} color="black" />
           </Text>

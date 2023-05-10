@@ -67,7 +67,7 @@ export default function PostDetails({ route, comments, navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1 }}>
       <ScrollView>
         {postsLoading ? (
           <View>

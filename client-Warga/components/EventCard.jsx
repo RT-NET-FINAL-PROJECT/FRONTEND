@@ -9,12 +9,7 @@ import {
 import { Text, Card, Button, Icon, Avatar, Skeleton } from "@rneui/themed";
 import { SimpleLineIcons, Entypo } from "@expo/vector-icons";
 
-export default function EventCard({
-  post,
-  navigation,
-  postsLoading,
-  currentLoggedIn,
-}) {
+export default function EventCard({ post, navigation, postsLoading }) {
   console.log(postsLoading);
   const descriptionText =
     "Event Description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis earum ex quaerat sint sapiente ab minus reprehenderit exercitationem nisi labore.";

@@ -12,28 +12,39 @@ import { Foundation, Feather } from "@expo/vector-icons";
 
 import { Card, ButtonGroup, Icon, Avatar } from "@rneui/themed";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentLoggedIn } from "../stores/action/actionCreator";
+import { getCurrentLoggedIn, getFamily } from "../stores/action/actionCreator";
 import ProfileDetailsCard from "../components/ProfileDetailsCard";
 import ProfileBerkasCard from "../components/ProfileBerkasCard";
 import ProfilePictureCard from "../components/ProfilePictureCard";
 import ProfileVehicleCard from "../components/ProfileVehicleCard";
+import { useIsFocused } from "@react-navigation/native";
+import ProfileKtp from "../components/ProfileKtp";
+import ProfileKk from "../components/ProfileKk";
+import ProfileAkta from "../components/ProfileAkta";
+import ProfileFamilyCard from "../components/ProfileFamilyCard";
 
-export default function Profile({ navigation }) {
-  const { currentLoggedIn } = useSelector((state) => state.users);
+export default function Profile({ navigation, route }) {
+  const { currentLoggedIn, currentLoggedInFamily } = useSelector(
+    (state) => state.users
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    try {
-      dispatch(getCurrentLoggedIn());
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    const unsubscribe = navigation.addListener("focus", () => {
+      try {
+        dispatch(getCurrentLoggedIn());
+        dispatch(getFamily());
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    return unsubscribe;
+  }, [route, navigation]);
   // console.log(currentLoggedIn);
-
+  console.log(currentLoggedInFamily.length);
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1 }}>
       <ScrollView>
         <View style={{ marginVertical: 16 }}>
           <Text
@@ -57,12 +68,54 @@ export default function Profile({ navigation }) {
               currentLoggedIn={currentLoggedIn}
               navigation={navigation}
             />
+            <Card.Divider style={{ marginTop: 20 }} />
             {/* END ProfileDetails Component */}
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 16,
+                width: "50%",
+              }}
+            >
+              Keluarga
+            </Text>
+            <ProfileFamilyCard
+              currentLoggedInFamily={currentLoggedInFamily}
+              currentLoggedIn={currentLoggedIn}
+            />
           </Card>
-          <ProfileBerkasCard
+          <Card containerStyle={styles.container}>
+            <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
+              Berkas Foto
+            </Text>
+
+            <ProfileKtp
+              currentLoggedIn={currentLoggedIn}
+              navigation={navigation}
+            />
+
+            <Card.Divider />
+
+            <ProfileKk
+              currentLoggedIn={currentLoggedIn}
+              navigation={navigation}
+            />
+
+            <Card.Divider />
+
+            <ProfileAkta
+              currentLoggedIn={currentLoggedIn}
+              navigation={navigation}
+            />
+          </Card>
+          {/* <ProfileKtp
             currentLoggedIn={currentLoggedIn}
             navigation={navigation}
-          />
+          /> */}
+          {/* <ProfileBerkasCard
+            currentLoggedIn={currentLoggedIn}
+            navigation={navigation}
+          /> */}
           <ProfileVehicleCard
             currentLoggedIn={currentLoggedIn}
             navigation={navigation}

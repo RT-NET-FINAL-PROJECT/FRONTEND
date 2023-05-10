@@ -1,9 +1,17 @@
-import React, { FC, ReactElement, useState } from "react";
-import { StyleSheet, TextInput, Text, View, ScrollView } from "react-native";
+import React, { FC, ReactElement, useState, useEffect } from "react";
+import {
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+  ScrollView,
+  Alert,
+  Image,
+} from "react-native";
 import { Card, Button, Icon, Avatar } from "@rneui/themed";
 import { Picker } from "@react-native-picker/picker";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../stores/action/actionCreator";
+import { getRts, register } from "../stores/action/actionCreator";
 
 export default function Register({ navigation }) {
   const [fullName, setFullName] = useState();
@@ -17,9 +25,28 @@ export default function Register({ navigation }) {
   const { usersLoading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
+  const { rts } = useSelector((state) => state.rts);
+
+  useEffect(() => {
+    dispatch(getRts());
+  }, []);
+
+  console.log(rts);
+
   const handleSubmit = async () => {
     try {
-      const abcd = await dispatch(
+      if (
+        !fullName ||
+        !email ||
+        !password ||
+        !phoneNumber ||
+        !ktpNumber ||
+        !statusKeluarga ||
+        !rt
+      ) {
+        throw "Lengkapi seluruh kolom.";
+      }
+      await dispatch(
         register({
           fullName,
           email,
@@ -30,9 +57,18 @@ export default function Register({ navigation }) {
           rt,
         })
       );
-      console.log(abcd);
+      await navigation.navigate("Login");
+
+      await Alert.alert(
+        "",
+        `Akun berhasil dibuat, mohon tunggu untuk diverifikasi.`,
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
     } catch (error) {
       console.log(error);
+      Alert.alert("", `${error}`, [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
     }
   };
 
@@ -49,17 +85,15 @@ export default function Register({ navigation }) {
   return (
     <View style={{ backgroundColor: "white" }}>
       <ScrollView>
-        <View
-          style={{
-            marginHorizontal: 16,
-            borderWidth: 1,
-            borderRadius: 8,
-            borderColor: "#C3C5C5",
-            padding: 16,
-            marginTop: 200,
-            marginBottom: 50,
-          }}
-        >
+        <View style={{ flex: 1, alignItems: "center", marginTop: 100 }}>
+          <Image
+            source={{
+              uri: "https://firebasestorage.googleapis.com/v0/b/portfolio-71585.appspot.com/o/RT-NET.png?alt=media&token=453a4ac0-32b0-4cd6-9638-7b0fb5c5c1b3",
+            }}
+            style={{ width: 150, height: 150 }}
+          />
+        </View>
+        <Card containerStyle={styles.container}>
           <Text style={{ fontWeight: "bold", fontSize: 24 }}>
             Create new account
           </Text>
@@ -161,7 +195,7 @@ export default function Register({ navigation }) {
             <View
               style={{
                 marginTop: 5,
-                height: 40,
+                height: rt ? 80 : 40,
                 borderWidth: 1,
                 borderRadius: 8,
                 borderColor: "#C3C5C5",
@@ -174,6 +208,7 @@ export default function Register({ navigation }) {
                 style={{ width: "100%" }}
                 selectedValue={rt}
                 onValueChange={(itemValue, itemIndex) => setRt(itemValue)}
+                numberOfLines={3}
               >
                 <Picker.Item
                   enabled={false}
@@ -181,7 +216,15 @@ export default function Register({ navigation }) {
                   label="Choose One"
                   value=""
                 />
-                <Picker.Item label="RT 1" value="1" />
+                {rts.map((rt, index) => {
+                  return (
+                    <Picker.Item
+                      key={index}
+                      label={`RT ${rt?.rt}/${rt?.rw} ${rt?.kelurahan}, ${rt?.kecamatan}, ${rt?.kotaKabupaten}, ${rt?.provinsi}`}
+                      value={rt?.id}
+                    />
+                  );
+                })}
               </Picker>
             </View>
           </View>
@@ -209,13 +252,29 @@ export default function Register({ navigation }) {
               Login here
             </Text>
           </Text>
-        </View>
+        </Card>
       </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    borderRadius: 8,
+    backgroundColor: "white",
+    marginBottom: 20,
+    // marginTop: 300,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
   input: {
     height: 40,
     borderWidth: 1,
