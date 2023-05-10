@@ -20,6 +20,9 @@ import {
     WARGAS_FETCH_ALL,
     WARGAS_FETCH_ID,
     WARGAS_FETCH_LOADING,
+    WARGAS_ADD_LOADING,
+    WARGAS_ADD_RESPONSE,
+    WARGAS_UPDATE,
     REQUESTS_ERROR,
     REQUESTS_FETCH_ALL,
     REQUESTS_FETCH_LOADING
@@ -322,6 +325,66 @@ import {
         });
     };
   };
+
+  export const addWarga = (payload) => {
+    return (dispatch, getState) => {
+      dispatch({type : WARGAS_ADD_LOADING, payload : true})
+      fetch( baseUrl + "rt/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          access_token: localStorage.getItem("access_token"),
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({type : WARGAS_ADD_RESPONSE, payload : data})
+        })
+        .catch((error) => {
+          dispatch({type : WARGAS_ERROR, payload : error?.message })
+        })
+        .finally( _ => {
+          dispatch({type : WARGAS_ADD_LOADING, payload : false})
+        })
+    }
+  }
+
+  export const updateWarga = (payload, id) => {
+    return (dispatch) => {
+      dispatch({type : WARGAS_ADD_LOADING, payload : true})
+      fetch(`${baseUrl}rt/users/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          access_token : localStorage.getItem('access_token')
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({type : WARGAS_UPDATE, payload : data})
+        })
+        .catch((error) => {
+          dispatch({type : WARGAS_ERROR, payload : error?.message })
+        })
+        .finally(_=>{
+          dispatch({type : WARGAS_ADD_LOADING, payload : false})
+        })
+    }
+  }
 
   export const fetchRequests = () => {
     return (dispatch) => {

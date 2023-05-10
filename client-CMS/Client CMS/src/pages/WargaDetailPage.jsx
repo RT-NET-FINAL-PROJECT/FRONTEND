@@ -13,7 +13,7 @@ export default function WargaDetailPage() {
   const { wargaDetail, loading } = useSelector((state) => {
     return state.warga
   })
-
+  console.log(wargaDetail)
   const { wargaId } = useParams();
   const dispatch = useDispatch()
 
@@ -43,7 +43,7 @@ export default function WargaDetailPage() {
                   <div style={{ textAlign: "end" }}>
                     <Button
                       as={Link}
-                      to={`/warga/edit/${wargaDetail.id}`}
+                      to={`/warga/edit/${wargaId}`}
                       style={{
                         backgroundColor: 'white',
                         borderColor: 'rgba(59,7,11,255)',
@@ -55,7 +55,7 @@ export default function WargaDetailPage() {
                     </Button>
                     <Button
                       as={Link}
-                      to={`/warga/delete/${wargaDetail.id}`}
+                      to={`/warga/delete/${wargaId}`}
                       style={{
                         backgroundColor: 'rgba(59,7,11,255)',
                         borderColor: 'rgba(59,7,11,255)'
