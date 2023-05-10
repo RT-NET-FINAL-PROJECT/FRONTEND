@@ -60,7 +60,7 @@ export default function Guest({ navigation }) {
   console.log(currentLoggedIn);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1 }}>
       <ScrollView>
         <Text
           style={{

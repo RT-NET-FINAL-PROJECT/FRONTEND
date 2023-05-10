@@ -12,29 +12,29 @@ import {
 
 import { Card, ButtonGroup, Button, Icon, Avatar } from "@rneui/themed";
 import { useDispatch } from "react-redux";
-import { addGuest } from "../stores/action/actionCreator";
+import { addGuest, addVehicle } from "../stores/action/actionCreator";
 
-export default function EditProfile({ navigation }) {
+export default function AddVehicle({ navigation }) {
   const [nama, setNama] = useState();
-  const [nomorKtp, setNomorKtp] = useState();
+  const [nomorPolisi, setNomorPolisi] = useState();
   const [error, setError] = useState([]);
 
-  // console.log(nama, nomorKtp);
+  // console.log(nama, nomorPolisi);
 
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {
     try {
-      if (!nama || !nomorKtp) {
+      if (!nama || !nomorPolisi) {
         throw "Lengkapi seluruh kolom";
       }
-      await Alert.alert("", "Daftarkan tamu?", [
+      await Alert.alert("", "Daftarkan Kendaraan?", [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed") },
         {
           text: "OK",
           onPress: async () => {
-            await dispatch(addGuest({ nama, nomorKtp }));
-            await navigation.navigate("Guest");
+            await dispatch(addVehicle({ nama, nomorPolisi }));
+            await navigation.navigate("Profile");
           },
         },
       ]);
@@ -56,13 +56,13 @@ export default function EditProfile({ navigation }) {
             marginHorizontal: 16,
           }}
         >
-          Daftarkan Tamu
+          Daftarkan Kendaraan
         </Text>
         <Card containerStyle={styles.container}>
           <View>
             {!error && <Text>{error}</Text>}
             <Text>
-              Name <Text style={{ color: "red" }}>*</Text>
+              Name Kendaraan <Text style={{ color: "red" }}>*</Text>
             </Text>
             <TextInput
               style={styles.input}
@@ -72,12 +72,14 @@ export default function EditProfile({ navigation }) {
           </View>
           <View style={{ marginTop: 15 }}>
             <Text>
-              No. KTP <Text style={{ color: "red" }}>*</Text>
+              Nomor Polisi <Text style={{ color: "red" }}>*</Text>
             </Text>
             <TextInput
               style={styles.input}
-              value={nomorKtp}
-              onChangeText={(text) => setNomorKtp(text.replace(/[^0-9]/g, ""))}
+              value={nomorPolisi}
+              onChangeText={(text) =>
+                setNomorPolisi(text.replace(/[^0-9]/g, ""))
+              }
             />
           </View>
           <Button

@@ -15,6 +15,8 @@ import store from "../stores";
 import { useEffect, useState } from "react";
 import ServicesHistory from "../screens/ServicesHistory";
 import Guest from "../screens/Guest";
+import AddVehicle from "../screens/AddVehicle";
+import DetailsRt from "../screens/DetailsRt";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +26,6 @@ export default function MainStack() {
 
   useEffect(() => {
     AsyncStorage.getItem("access_token").then((item) => {
-      console.log(item);
       if (item) {
         setIsLogin(true);
       } else {
@@ -96,6 +97,20 @@ export default function MainStack() {
             <Stack.Screen
               name="ServicesHistory"
               component={ServicesHistory}
+              options={{
+                headerTitle: () => <Logo />,
+              }}
+            />
+            <Stack.Screen
+              name="AddVehicle"
+              component={AddVehicle}
+              options={{
+                headerTitle: () => <Logo />,
+              }}
+            />
+            <Stack.Screen
+              name="DetailsRt"
+              component={DetailsRt}
               options={{
                 headerTitle: () => <Logo />,
               }}

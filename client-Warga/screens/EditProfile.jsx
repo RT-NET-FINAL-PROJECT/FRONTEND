@@ -117,7 +117,7 @@ export default function EditProfile({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1 }}>
       <ScrollView>
         <View style={{ marginVertical: 16 }}>
           <View
@@ -154,11 +154,41 @@ export default function EditProfile({ navigation }) {
               >
                 Status Keluarga
               </Text>
-              <TextInput
-                style={styles.input}
-                value={statusKeluarga}
-                onChangeText={(text) => setStatusKeluarga(text)}
-              />
+              <View
+                style={{
+                  marginTop: 5,
+                  height: 40,
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  borderColor: "#C3C5C5",
+                  color: "black",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+              >
+                <Picker
+                  style={{ width: "100%" }}
+                  selectedValue={statusKeluarga}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setStatusKeluarga(itemValue)
+                  }
+                >
+                  <Picker.Item
+                    enabled={false}
+                    style={{ color: "grey" }}
+                    label="Choose One"
+                    value=""
+                  />
+                  <Picker.Item
+                    label="Kepala Keluarga"
+                    value="Kepala Keluarga"
+                  />
+                  <Picker.Item
+                    label="Anggota Keluarga"
+                    value="Anggota Keluarga"
+                  />
+                </Picker>
+              </View>
             </View>
             <View style={{ marginTop: 15 }}>
               <Text

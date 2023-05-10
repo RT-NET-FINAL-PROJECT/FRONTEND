@@ -1,5 +1,11 @@
 import { Alert, View, Image, StyleSheet, ScrollView } from "react-native";
-import { SimpleLineIcons, Entypo } from "@expo/vector-icons";
+import {
+  SimpleLineIcons,
+  Entypo,
+  MaterialCommunityIcons,
+  FontAwesome5,
+  MaterialIcons,
+} from "@expo/vector-icons";
 
 import { Text, Card, Button, Icon, Avatar } from "@rneui/themed";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +28,7 @@ export default function Menu({ navigation }) {
       setServicesLoading(false);
     }
   };
-  console.log(services);
+  // console.log(services);
   useEffect(() => {
     fetchServices();
   }, []);
@@ -51,7 +57,7 @@ export default function Menu({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1 }}>
       <View style={{ marginHorizontal: 16 }}>
         <Text style={{ fontWeight: "bold", fontSize: 24, marginVertical: 16 }}>
           Menu
@@ -91,7 +97,10 @@ export default function Menu({ navigation }) {
             onPress={() => {
               navigation.navigate("Guest");
             }}
-          />
+          >
+            <FontAwesome5 name="user-friends" size={18} color="black" />
+            {`     Tamu`}
+          </Button>
         </View>
         <View
           style={{
@@ -112,7 +121,7 @@ export default function Menu({ navigation }) {
           }}
         >
           <Button
-            title="Kas"
+            title="RT"
             containerStyle={{
               height: 40,
               width: "100%",
@@ -124,7 +133,15 @@ export default function Menu({ navigation }) {
               justifyContent: "flex-start",
             }}
             titleStyle={{ color: "black" }}
-          />
+            onPress={() => navigation.navigate("DetailsRt")}
+          >
+            <MaterialCommunityIcons
+              name="account-details"
+              size={24}
+              color="black"
+            />
+            {`     Details RT`}
+          </Button>
         </View>
       </View>
       <Card containerStyle={styles.container}>
@@ -188,6 +205,7 @@ export default function Menu({ navigation }) {
                   }}
                   onPress={() =>
                     navigation.navigate("Services", {
+                      serviceId: service?.id,
                       serviceName: service?.name,
                       serviceDescription: service?.deskripsi,
                     })
@@ -241,7 +259,10 @@ export default function Menu({ navigation }) {
             }}
             titleStyle={{ color: "#C30909", marginLeft: 5 }}
             onPress={() => handleLogout()}
-          />
+          >
+            <MaterialIcons name="logout" size={24} color="#C30909" />
+            {`     Keluar`}
+          </Button>
         </View>
       </View>
     </View>

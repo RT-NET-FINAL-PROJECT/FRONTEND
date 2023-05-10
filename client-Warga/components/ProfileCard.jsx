@@ -11,14 +11,14 @@ export default function ProfileCard({ user }) {
         <View>
           <Text style={styles.name}>
             <Text
-              style={{ fontSize: 20, fontWeight: "bold", color: "#582d2f" }}
+              style={{ fontSize: 18, fontWeight: "bold", color: "#582d2f" }}
             >
               Hi
             </Text>
-            {",  "}
+            {", "}
             {user?.namaLengkap}
           </Text>
-          <Text style={styles.name}>{user?.rt_id}</Text>
+          {/* <Text style={styles.name}>{user?.rt_id}</Text> */}
         </View>
         <Avatar
           size={64}

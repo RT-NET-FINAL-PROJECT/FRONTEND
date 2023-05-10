@@ -46,6 +46,7 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
           style={{
             textAlign: "center",
             fontWeight: "bold",
+            color: "#582d2f",
             fontSize: 24,
           }}
         >
@@ -68,19 +69,19 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
         <Text style={{ marginLeft: 5 }}>{currentLoggedIn?.nomorTelp}</Text>
       </View>
       <View style={{ marginTop: 60 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           Tempat Lahir
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.tempat_lahir ? currentLoggedIn?.tempat_lahir : "-"}
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           Tanggal Lahir
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.tanggal_lahir
             ? tanggalLahir?.toLocaleString("id-ID", {
@@ -92,19 +93,19 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           Pekerjaan
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.pekerjaan ? currentLoggedIn?.pekerjaan : "-"}
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           Jenis Kelamin
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.jenis_kelamin
             ? currentLoggedIn?.jenis_kelamin
@@ -112,10 +113,10 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           Status Perkawinan
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.status_perkawinan
             ? currentLoggedIn?.status_perkawinan
@@ -123,28 +124,28 @@ export default function ProfileDetailsCard({ currentLoggedIn, navigation }) {
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           Agama
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.agama ? currentLoggedIn?.agama : "-"}
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           No. Kartu Tanda Penduduk
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.nomorKtp}
         </Text>
       </View>
       <View style={{ marginTop: 15 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "#582d2f" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 15, color: "#582d2f" }}>
           No. Kartu Keluarga
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 15, color: "black" }}>
+        <Text style={{ fontWeight: "bold", fontSize: 13, color: "black" }}>
           {"  "}
           {currentLoggedIn?.nomorKk ? currentLoggedIn?.nomorKk : "-"}
         </Text>

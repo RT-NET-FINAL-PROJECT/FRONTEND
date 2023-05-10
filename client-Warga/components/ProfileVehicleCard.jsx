@@ -14,6 +14,7 @@ import { MaterialIcons, Feather, Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteGuest,
+  deleteVehicle,
   getCurrentLoggedIn,
 } from "../stores/action/actionCreator";
 
@@ -21,10 +22,10 @@ export default function ProfileVehicleCard({ navigation, currentLoggedIn }) {
   const [vehicleLoading, setVehicleLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const handleDelete = async (id, name) => {
+  const handleDelete = async (id, name, nomorPolisi) => {
     try {
       console.log(id);
-      Alert.alert("", `Hapus ${name} dari daftar tamu?`, [
+      Alert.alert("", `Hapus ${name} dengan nomor polisi ${nomorPolisi}?`, [
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
@@ -32,7 +33,7 @@ export default function ProfileVehicleCard({ navigation, currentLoggedIn }) {
         {
           text: "OK",
           onPress: () => {
-            dispatch(deleteGuest(id));
+            dispatch(deleteVehicle(id));
           },
         },
       ]);
@@ -70,7 +71,12 @@ export default function ProfileVehicleCard({ navigation, currentLoggedIn }) {
           }}
           // onPress={pickImage}
         >
-          <MaterialIcons name="add" size={24} color="black" />
+          <MaterialIcons
+            name="add"
+            size={24}
+            color="black"
+            onPress={() => navigation.navigate("AddVehicle")}
+          />
         </Text>
       </View>
       {vehicleLoading ? (
@@ -98,7 +104,13 @@ export default function ProfileVehicleCard({ navigation, currentLoggedIn }) {
                       name="delete"
                       size={24}
                       color="black"
-                      onPress={() => handleDelete(vehicle?.id, vehicle?.name)}
+                      onPress={() =>
+                        handleDelete(
+                          vehicle?.id,
+                          vehicle?.name,
+                          vehicle?.nomorPolisi
+                        )
+                      }
                     />
                   </View>
                 </View>
