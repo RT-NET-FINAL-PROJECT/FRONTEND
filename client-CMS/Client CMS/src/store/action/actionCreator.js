@@ -4,9 +4,11 @@ import { baseUrl } from "../../config/api"
 import {
     POSTS_ERROR,
     POSTS_FETCH_ALL,
+    POSTS_FETCH_ID,
     POSTS_FETCH_LOADING,
     POSTS_ADD_LOADING,
     POSTS_ADD_RESPONSE,
+    POSTS_UPDATE,
     SERVICES_ERROR,
     SERVICES_FETCH_ALL,
     SERVICES_FETCH_LOADING,
@@ -46,7 +48,7 @@ import {
   export const fetchPosts = () => {
     return (dispatch) => {
       dispatch({type : POSTS_FETCH_LOADING, payload : true})
-      fetch( baseUrl + "event", {
+      fetch( baseUrl + "posts", {
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -70,6 +72,59 @@ import {
       });
     };
   };
+
+  export const fetchDetailPost = (id) => {
+    return (dispatch) => {
+      fetch(`${baseUrl}event/${id}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({ type: POSTS_FETCH_ID, payload: data });
+        })
+        .catch((error) => {
+          dispatch({ type: "error" });
+        });
+    };
+  };
+
+  export const updatePost = (payload, id) => {
+    return (dispatch) => {
+      dispatch({type : POSTS_ADD_LOADING, payload : true})
+      fetch(`${baseUrl}event/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          access_token : localStorage.getItem('access_token')
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({type : POSTS_UPDATE, payload : data})
+        })
+        .catch((error) => {
+          dispatch({type : POSTS_ERROR, payload : error?.message })
+        })
+        .finally(_=>{
+          dispatch({type : POSTS_ADD_LOADING, payload : false})
+        })
+    }
+  }
 
   export const addPost = (payload) => {
     return (dispatch, getState) => {

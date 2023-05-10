@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function PostCard({ post }) {
   // console.log(post)
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div style={{ marginTop: "20px", marginBottom:"30px" }}>
     <Card style={{borderColor:'rgba(59,7,11,255)'}}>
         <Card.Header 
           style={{

@@ -17,7 +17,7 @@ export default function HomePage() {
 
   useEffect(() => dispatch(fetchPosts()), [dispatch]);
   
-  console.log(posts)
+  // console.log(posts)
   return (
     <Container style={{ marginTop: "100px" }}>
       {loading ? <LoadingScreen /> : (

@@ -16,7 +16,7 @@ export default function AddPostPage() {
     deskripsi: "",
     kategori: "",
     lokasi: "",
-    biaya:""
+    biaya: ""
   });
 
   const dispatch = useDispatch();
@@ -43,6 +43,7 @@ export default function AddPostPage() {
 
   };
 
+  // console.log(postResponse)
   useEffect(() => {
     if (postResponse) {
       navigate('/')
@@ -78,14 +79,21 @@ export default function AddPostPage() {
             onChange={postDataHandler}
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
           />
-          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Kategori Kegiatan</Form.Label>
-          <Form.Control
-            name="kategori"
-            type="text"
-            placeholder="Kategori Kegiatan"
-            onChange={postDataHandler}
-            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
-          />
+          <Form.Group>
+            <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Kategori Kegiatan</Form.Label>
+            <Form.Control
+              name="kategori"
+              as="select"
+              onChange={postDataHandler}
+              style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+            >
+              <option selected disabled style={{ color: "grey" }}>--- Pilih Kategori Kegiatan ---</option>
+              <option value="pengumuman">Pengumuman</option>
+              <option value="event">Event</option>
+            </Form.Control>
+          </Form.Group>
+
+
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Lokasi Kegiatan</Form.Label>
           <Form.Control
             name="lokasi"
@@ -97,7 +105,7 @@ export default function AddPostPage() {
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Biaya Iuran Kegiatan</Form.Label>
           <Form.Control
             name="biaya"
-            type=""
+            type="number"
             placeholder="Biaya Iuran Kegiatan"
             onChange={postDataHandler}
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}

@@ -1,9 +1,11 @@
-import { POSTS_FETCH_ALL, POSTS_FETCH_LOADING, POSTS_ADD_LOADING, POSTS_ADD_RESPONSE, POSTS_ERROR } from "../action/actionType"
+import { POSTS_FETCH_ALL, POSTS_FETCH_ID, POSTS_UPDATE, POSTS_FETCH_LOADING, POSTS_ADD_LOADING, POSTS_ADD_RESPONSE, POSTS_ERROR } from "../action/actionType"
 
 const defaultState = {
     posts: [],
+    postDetail: null,
     loading: true,
-    postResponse : null,
+    updateStatus: null,
+    postResponse: null,
     errorMessage: ''
 }
 
@@ -14,10 +16,20 @@ function postsReducer(state = defaultState, action) {
                 ...state,
                 posts: action.payload
             }
+        case POSTS_FETCH_ID:
+            return {
+                ...state,
+                postDetail: action.payload
+            }
         case POSTS_FETCH_LOADING:
             return {
                 ...state,
                 loading: action.payload
+            }
+        case POSTS_UPDATE:
+            return {
+                ...state,
+                updateStatus: action.payload
             }
         case POSTS_ADD_RESPONSE:
             return {
