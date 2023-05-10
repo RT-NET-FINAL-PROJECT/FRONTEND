@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
 export default function LayananCard({ service }) {
-  console.log(service)
+  // console.log(service)
   return (
     <Card style={{borderColor:'rgba(59,7,11,255)', margin:"40px"}}>
       <Card.Header 
@@ -20,8 +20,12 @@ export default function LayananCard({ service }) {
       <Card.Body>
         <Card.Title>{service.name}</Card.Title>
         <Card.Text>
-          Deskripsi Layanan: &emsp;&emsp;:&ensp;
+          Deskripsi Layanan: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&ensp;
           {service.deskripsi}
+        </Card.Text>
+        <Card.Text>
+          Link Dokumen Pendukung: &emsp;&emsp;&nbsp;:&ensp;
+          <a href={service.dokumen_pendukung}>{service.dokumen_pendukung}</a>
         </Card.Text>
         <Button
             as={Link} 
