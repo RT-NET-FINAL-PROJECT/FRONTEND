@@ -16,7 +16,11 @@ export const SERVICES_UPDATE = "services/update";
 
 export const WARGAS_FETCH_ALL = "wargas/fetch";
 export const WARGAS_FETCH_LOADING = "wargas/loading"
+export const WARGAS_FETCH_ID = "wargas/:id";
 export const WARGAS_ERROR = "wargas/error";
+export const WARGAS_ADD_RESPONSE = "wargas/";
+export const WARGAS_ADD_LOADING = "wargas/loading";
+export const WARGAS_UPDATE = "wargas/update";
 
 export const REQUESTS_FETCH_ALL = "requests/fetch";
 export const REQUESTS_FETCH_LOADING = "requests/loading"

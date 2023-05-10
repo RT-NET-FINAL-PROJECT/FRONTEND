@@ -18,6 +18,7 @@ import {
     SERVICES_UPDATE,
     WARGAS_ERROR,
     WARGAS_FETCH_ALL,
+    WARGAS_FETCH_ID,
     WARGAS_FETCH_LOADING,
     REQUESTS_ERROR,
     REQUESTS_FETCH_ALL,
@@ -296,6 +297,29 @@ import {
           const action = fetchWargasLoading()
           dispatch(action)
       });
+    };
+  };
+
+  export const fetchDetailWarga = (id) => {
+    return (dispatch) => {
+      fetch(`${baseUrl}rt/users/${id}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({ type: WARGAS_FETCH_ID, payload: data });
+        })
+        .catch((error) => {
+          dispatch({ type: "error" });
+        });
     };
   };
 
