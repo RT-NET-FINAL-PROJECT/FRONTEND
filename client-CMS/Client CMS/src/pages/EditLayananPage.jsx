@@ -41,7 +41,7 @@ export default function EditLayananPage() {
 
     dispatch(updateService(objToSend, layananId))
   };
-  console.log(updateStatus)
+  // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
       navigate('/layanan')

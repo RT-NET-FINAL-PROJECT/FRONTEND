@@ -127,11 +127,11 @@ export default function RegisterRTBaruPage() {
 
   return (
     <>
-      <Container style={{ marginTop: "3%", marginBottom: "3%", width: "550px", backgroundColor: 'white', padding: "40px" }}>
-        <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "35px", textAlign: "center", marginTop: "10%", marginBottom: "7%", fontWeight: "bold" }}>Daftarkan RT Baru!</h1>
+    <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "30px", textAlign: "center", marginTop: "7%", fontWeight: "bold" }}>Registrasi RT Baru ke ekosistem RT-NET!</h1>
+      <Container style={{ marginBottom: "3%", width: "550px", backgroundColor: 'white', padding: "40px" }}>
         {showAlert && <MyAlert title={errorMessage} setShow={setShowAlert} />}
         <Form onSubmit={submitTheValue}>
-          <Form.Group className="mb-3" controlId="formBasicNamaLengkap">
+          <Form.Group className="mb-2" controlId="formBasicNamaLengkap">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Nama Lengkap Ketua RT:</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="kepala_rt"
@@ -141,7 +141,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicNIK">
+          <Form.Group className="mb-2" controlId="formBasicNIK">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>NIK Ketua RT:</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="nik_rt"
@@ -151,7 +151,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicWAGroup">
+          <Form.Group className="mb-2" controlId="formBasicWAGroup">
           <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Link WhatsApp Group RT:</Form.Label>
           <Form.Control className="form-control placeholder-color"
             name="link_grup_wa"
@@ -161,7 +161,7 @@ export default function RegisterRTBaruPage() {
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
           />
         </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicRT">
+          <Form.Group className="mb-2" controlId="formBasicRT">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>RT :</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="rt"
@@ -171,7 +171,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicRW">
+          <Form.Group className="mb-2" controlId="formBasicRW">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>RW :</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="rw"
@@ -181,7 +181,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicKelurahan">
+          <Form.Group className="mb-2" controlId="formBasicKelurahan">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Kelurahan :</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="kelurahan"
@@ -191,7 +191,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicKecamatan">
+          <Form.Group className="mb-2" controlId="formBasicKecamatan">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Kecamatan :</Form.Label>
             <Form.Control
               name="kecamatan"
@@ -201,7 +201,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicKabupaten">
+          <Form.Group className="mb-2" controlId="formBasicKabupaten">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Kota/Kabupaten :</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="kotaKabupaten"
@@ -211,7 +211,7 @@ export default function RegisterRTBaruPage() {
               style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicProvinsi">
+          <Form.Group className="mb-2" controlId="formBasicProvinsi">
             <Form.Label style={{ color: 'rgba(59,7,11,255)' }}>Provinsi :</Form.Label>
             <Form.Control className="form-control placeholder-color"
               name="provinsi"

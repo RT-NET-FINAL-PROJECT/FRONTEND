@@ -14,7 +14,7 @@ function wargasReducer(state = defaultState, action) {
         case WARGAS_FETCH_ALL:
             return {
                 ...state,
-                wargas: action.payload.Users
+                wargas: action.payload
             }
         case WARGAS_FETCH_ID:
             return {

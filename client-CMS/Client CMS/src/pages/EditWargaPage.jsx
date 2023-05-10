@@ -81,10 +81,10 @@ export default function EditWargaPage() {
 
     dispatch(updateWarga(objToSend, wargaId))
   };
-  console.log(updateStatus)
+  // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
-      navigate('/warga')
+      navigate(`/warga/detail/${wargaId}`)
     }
 
     return () => dispatch({ type: WARGAS_UPDATE, payload: null })
@@ -156,7 +156,7 @@ export default function EditWargaPage() {
             onChange={(e) => setJenisKelamin(e.target.value)}
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "2px" }}
           >
-            <option selected disabled style={{ color: "grey" }}>--- Pilih jenis kelamin ---</option>
+            <option value="" style={{ color: "grey" }}>--- Pilih jenis kelamin ---</option>
             <option value="Laki-Laki">Laki-Laki</option>
             <option value="Perempuan">Perempuan</option>
           </Form.Control>
@@ -239,7 +239,7 @@ export default function EditWargaPage() {
           }}
           type="submit"
         >
-          Tambahkan
+          Ubahkan
         </Button>
       </Form>
       {modalShow && (

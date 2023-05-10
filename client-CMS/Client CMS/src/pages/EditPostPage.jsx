@@ -47,7 +47,7 @@ export default function EditPostPage() {
 
     dispatch(updatePost(objToSend, postId))
   };
-  console.log(updateStatus)
+  // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
       navigate('/')

@@ -46,6 +46,12 @@ import {
         payload: false
     }
   }
+  export const fetchWargaDetailLoading = () => {
+    return {
+        type: WARGAS_FETCH_LOADING,
+        payload: false
+    }
+  }
   export const fetchRequestsLoading = () => {
     return {
         type: REQUESTS_FETCH_LOADING,
@@ -291,6 +297,7 @@ import {
           }
         })
         .then((data) => {
+          console.log(data.rt)
           dispatch({ type: WARGAS_FETCH_ALL, payload: data });
         })
         .catch((error) => {
@@ -318,11 +325,16 @@ import {
           }
         })
         .then((data) => {
+          // console.log(data)
           dispatch({ type: WARGAS_FETCH_ID, payload: data });
         })
         .catch((error) => {
           dispatch({ type: "error" });
-        });
+        })
+        .finally(() => {
+          const action = fetchWargaDetailLoading()
+          dispatch(action)
+      });
     };
   };
 

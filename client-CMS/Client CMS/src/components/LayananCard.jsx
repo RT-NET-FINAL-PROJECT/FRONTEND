@@ -15,7 +15,7 @@ export default function LayananCard({ service }) {
             color:"white"
         }}
         >
-        Layanan Warga RT {service.Rt.rt}
+        Layanan Warga RT {service.Rt.rt}/RW {service.Rt.rw} Kel. {service.Rt.kelurahan}
       </Card.Header>
       <Card.Body>
         <Card.Title>{service.name}</Card.Title>

@@ -8,19 +8,20 @@ export default function WargaRow({ warga, index }) {
         <tr >
             <td>{++index}</td>
             <td>{warga.namaLengkap}</td>
-            <td>{warga.nomorTelp}</td>
+            <td><img src={warga.photoUrl} style={{width:"100px"}}alt="img"/></td>
             <td>{warga.email}</td>
             <td>{warga.status}</td>
             <td>{warga.role}</td>
             <td>
-                <div className="d-flex gap-2 justify-content-center">
+                <div className="d-flex justify-content-center">
                     <Link to={`/warga/detail/${warga.id}`}>
                         <Button 
                             style={{
                                 backgroundColor:'white', 
                                 borderColor:'rgba(59,7,11,255)',
                                 color:'rgba(59,7,11,255)',
-                                marginRight:'10px'
+                                marginRight:'10px',
+                                fontSize:"15px"
                             }}
                         >
                         Lihat Detil Data
@@ -32,7 +33,8 @@ export default function WargaRow({ warga, index }) {
                                 backgroundColor:'grey', 
                                 borderColor:'rgba(59,7,11,255)',
                                 color:'white',
-                                marginRight:'10px'
+                                marginRight:'10px',
+                                fontSize:"15px"
                             }}
                         >
                         Ubah Detil Data
@@ -42,7 +44,8 @@ export default function WargaRow({ warga, index }) {
                         <Button 
                         style={{
                             backgroundColor:'rgba(59,7,11,255)', 
-                            borderColor:'rgba(59,7,11,255)'
+                            borderColor:'rgba(59,7,11,255)',
+                            fontSize:"15px"
                         }}
                         >
                         Hapus Data

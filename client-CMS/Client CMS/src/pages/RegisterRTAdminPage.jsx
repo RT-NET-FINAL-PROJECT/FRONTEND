@@ -5,9 +5,16 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import MyAlert from "../components/MyAlert";
 import { baseUrl } from "../config/api.js"
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchWargas } from "../store/action/actionCreator";
 export default function RegisterRTAdminPage() {
 
+    const { wargas } = useSelector(
+        (state) => state.warga
+    );
+    const dispatch = useDispatch();
+    useEffect(() => dispatch(fetchWargas()), [dispatch]);
     const navigate = useNavigate()
     const [showAlert, setShowAlert] = useState(() => false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -100,8 +107,9 @@ export default function RegisterRTAdminPage() {
 
     return (
         <>
-            <Container style={{ marginTop: "3%", marginBottom: "3%", width: "550px", backgroundColor: 'white', padding: "40px" }}>
-                <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "35px", textAlign: "center", marginTop: "10%", marginBottom: "7%", fontWeight: "bold" }}>Daftarkan Perangkat RT!</h1>
+        <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "30px", textAlign: "center", marginTop: "7%", marginBottom: "3%", fontWeight: "bold" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+            <Container style={{ marginBottom: "3%", width: "500px", backgroundColor: 'white', padding: "20px" }}>
+                <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "30px", textAlign: "center", marginBottom: "7%", fontWeight: "bold" }}>Registrasi Perangkat RT!</h1>
                 {showAlert && <MyAlert title={errorMessage} setShow={setShowAlert} />}
                 <Form onSubmit={submitTheValue}>
                     <Form.Group className="mb-3" controlId="formBasicNamaLengkap">
