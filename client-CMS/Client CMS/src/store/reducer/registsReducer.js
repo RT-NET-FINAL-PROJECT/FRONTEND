@@ -1,35 +1,35 @@
-import { REQUESTS_FETCH_ALL, REQUESTS_FETCH_LOADING, REQUESTS_ERROR, REQUESTS_ADD_LOADING, REQUESTS_PATCH} from "../action/actionType"
+import { REGISTS_FETCH_ALL, REGISTS_FETCH_LOADING, REGISTS_ERROR, REGISTS_PATCH, REGISTS_ADD_LOADING } from "../action/actionType"
 
 const defaultState = {
-    requests: [],
+    regists: [],
     loading: true,
     errorMessage: '',
-    updateServiceStatus: null
+    updateStatus: null,
 }
 
-function requestsReducer(state = defaultState, action) {
+function registsReducer(state = defaultState, action) {
     switch (action.type) {
-        case REQUESTS_FETCH_ALL:
+        case REGISTS_FETCH_ALL:
             return {
                 ...state,
-                requests: action.payload
+                regists: action.payload
             }
-        case REQUESTS_FETCH_LOADING:
+        case REGISTS_FETCH_LOADING:
             return {
                 ...state,
                 loading: action.payload
             }
-        case REQUESTS_ERROR:
+        case REGISTS_ERROR:
             return {
                 ...state,
                 errorMessage: action.payload
             }
-        case REQUESTS_PATCH:
+        case REGISTS_PATCH:
             return {
                 ...state,
-                updateServiceStatus: action.payload
+                updateStatus: action.payload
             }
-        case REQUESTS_ADD_LOADING:
+        case REGISTS_ADD_LOADING:
             return {
                 ...state,
                 loading: action.payload
@@ -39,4 +39,4 @@ function requestsReducer(state = defaultState, action) {
     }
 }
 
-export default requestsReducer;
+export default registsReducer;

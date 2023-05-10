@@ -25,3 +25,11 @@ export const WARGAS_UPDATE = "wargas/update";
 export const REQUESTS_FETCH_ALL = "requests/fetch";
 export const REQUESTS_FETCH_LOADING = "requests/loading"
 export const REQUESTS_ERROR = "requests/error";
+export const REQUESTS_PATCH = "requests/patch";
+export const REQUESTS_ADD_LOADING = "requests/loading";
+
+export const REGISTS_FETCH_ALL = "regists/fetch";
+export const REGISTS_FETCH_LOADING = "regists/loading"
+export const REGISTS_ERROR = "regists/error";
+export const REGISTS_PATCH = "regists/patch";
+export const REGISTS_ADD_LOADING = "regists/loading";

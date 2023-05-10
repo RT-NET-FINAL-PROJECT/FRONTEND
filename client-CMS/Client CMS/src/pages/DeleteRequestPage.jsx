@@ -2,11 +2,37 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { baseUrl } from "../config/api";
 
 export default function DeleteRequestPage() {
+  const { requestId } = useParams();
+  
+  const navigate = useNavigate();
 
+  const deleteHandler = (event) => {
+    event.preventDefault();
+    fetch(`${baseUrl}submissions/${requestId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        access_token: localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("something is wrong");
+        }
+      })
+      .then((data) => {
+        navigate("/request");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{height : '70vh'}}>
         <div>
@@ -24,11 +50,11 @@ export default function DeleteRequestPage() {
                 <Card.Body>
                 <Card.Title>Apakah Anda yakin ingin menghapus request ini?</Card.Title>
                     <div className="d-flex gap-2 justify-content-center" style={{marginTop:"50px"}}>
-                        <Button 
+                        <Button onClick={deleteHandler}
                           style={{
                             backgroundColor:'rgba(59,7,11,255)', 
                             borderColor:'rgba(59,7,11,255)',
-                            width:"70px"
+                            width:"70px",
                           }}
                         >
                         Ya

@@ -25,7 +25,14 @@ import {
     WARGAS_UPDATE,
     REQUESTS_ERROR,
     REQUESTS_FETCH_ALL,
-    REQUESTS_FETCH_LOADING
+    REQUESTS_FETCH_LOADING,
+    REQUESTS_PATCH,
+    REQUESTS_ADD_LOADING,
+    REGISTS_ERROR,
+    REGISTS_FETCH_ALL,
+    REGISTS_FETCH_LOADING,
+    REGISTS_PATCH,
+    REGISTS_ADD_LOADING,
 } from "./actionType";
 
   export const fetchPostsLoading = () => {
@@ -55,6 +62,12 @@ import {
   export const fetchRequestsLoading = () => {
     return {
         type: REQUESTS_FETCH_LOADING,
+        payload: false
+    }
+  }
+  export const fetchRegistsLoading = () => {
+    return {
+        type: REGISTS_FETCH_LOADING,
         payload: false
     }
   }
@@ -297,7 +310,7 @@ import {
           }
         })
         .then((data) => {
-          console.log(data.rt)
+          // console.log(data.rt)
           dispatch({ type: WARGAS_FETCH_ALL, payload: data });
         })
         .catch((error) => {
@@ -401,7 +414,7 @@ import {
   export const fetchRequests = () => {
     return (dispatch) => {
       dispatch({type : REQUESTS_FETCH_LOADING, payload : true})
-      fetch( baseUrl + "rt/users/submissions", {
+      fetch( baseUrl + "submission/services", {
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -421,6 +434,105 @@ import {
         })
         .finally(() => {
           const action = fetchRequestsLoading()
+          dispatch(action)
+      });
+    };
+  };
+
+  export const updateServiceStatus = (payload, serviceId, submissionId) => {
+    return (dispatch) => {
+      dispatch({type : REQUESTS_PATCH, payload})
+
+      const query = new URLSearchParams({inputStatus: payload})
+
+      // console.log(query)
+      fetch(`${baseUrl}services/${serviceId}/submissions/${submissionId}?${query}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          access_token : localStorage.getItem('access_token')
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          console.log(data)
+          dispatch({type : REQUESTS_PATCH, payload : data})
+        })
+        .catch((error) => {
+          console.log(error)
+          dispatch({type : REQUESTS_ERROR, payload : error?.message })
+        })
+        .finally(_=>{
+          dispatch({type : REQUESTS_ADD_LOADING, payload : false})
+        })
+    }
+  }
+
+  export const approveUser = (payload, userId, submissionId) => {
+    return (dispatch) => {
+      dispatch({type : REGISTS_PATCH, payload})
+      const query = new URLSearchParams({inputStatus: payload})
+
+      // console.log(query)
+      fetch(`${baseUrl}rt/users/${userId}/submissions/${submissionId}?${query}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          access_token : localStorage.getItem('access_token')
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          console.log(data)
+          dispatch({type : REGISTS_PATCH, payload : data})
+        })
+        .catch((error) => {
+          console.log(error)
+          dispatch({type : REGISTS_ERROR, payload : error?.message })
+        })
+        .finally(_=>{
+          dispatch({type : REGISTS_ADD_LOADING, payload : false})
+        })
+    }
+  }
+
+  export const fetchRegists = () => {
+    return (dispatch) => {
+      dispatch({type : REGISTS_FETCH_LOADING, payload : true})
+      fetch( baseUrl + "submission/registerwarga", {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({ type: REGISTS_FETCH_ALL, payload: data });
+        })
+        .catch((error) => {
+          dispatch({ type: REGISTS_ERROR, payload: error?.message });
+        })
+        .finally(() => {
+          const action = fetchRegistsLoading()
           dispatch(action)
       });
     };
