@@ -144,7 +144,9 @@ export default function EditPostPage() {
           Ubahkan
         </Button>
       </Form>
-
+      {modalShow && (
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='All fields must be filled' />
+      )}
     </Container>
   );
 }

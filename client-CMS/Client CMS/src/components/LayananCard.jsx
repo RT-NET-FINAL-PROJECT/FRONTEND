@@ -20,8 +20,12 @@ export default function LayananCard({ service }) {
       <Card.Body>
         <Card.Title>{service.name}</Card.Title>
         <Card.Text>
-          Deskripsi Layanan: &emsp;&emsp;:&ensp;
+          Deskripsi Layanan: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&ensp;
           {service.deskripsi}
+        </Card.Text>
+        <Card.Text>
+          Link Dokumen Pendukung: &emsp;&emsp;&nbsp;:&ensp;
+          <a href={service.dokumen_pendukung}>{service.dokumen_pendukung}</a>
         </Card.Text>
         <Button
             as={Link} 

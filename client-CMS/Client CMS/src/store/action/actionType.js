@@ -8,7 +8,11 @@ export const POSTS_UPDATE = "posts/update";
 
 export const SERVICES_FETCH_ALL = "services/fetch";
 export const SERVICES_FETCH_LOADING = "services/loading"
+export const SERVICES_FETCH_ID = "services/:id";
 export const SERVICES_ERROR = "services/error";
+export const SERVICES_ADD_RESPONSE = "services/";
+export const SERVICES_ADD_LOADING = "services/loading";
+export const SERVICES_UPDATE = "services/update";
 
 export const WARGAS_FETCH_ALL = "wargas/fetch";
 export const WARGAS_FETCH_LOADING = "wargas/loading"

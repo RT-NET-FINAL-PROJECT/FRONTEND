@@ -11,7 +11,11 @@ import {
     POSTS_UPDATE,
     SERVICES_ERROR,
     SERVICES_FETCH_ALL,
+    SERVICES_FETCH_ID,
     SERVICES_FETCH_LOADING,
+    SERVICES_ADD_LOADING,
+    SERVICES_ADD_RESPONSE,
+    SERVICES_UPDATE,
     WARGAS_ERROR,
     WARGAS_FETCH_ALL,
     WARGAS_FETCH_LOADING,
@@ -183,6 +187,89 @@ import {
       });
     };
   };
+
+  export const fetchDetailService = (id) => {
+    return (dispatch) => {
+      fetch(`${baseUrl}services/${id}`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({ type: SERVICES_FETCH_ID, payload: data });
+        })
+        .catch((error) => {
+          dispatch({ type: "error" });
+        });
+    };
+  };
+
+  export const updateService = (payload, id) => {
+    return (dispatch) => {
+      dispatch({type : SERVICES_ADD_LOADING, payload : true})
+      fetch(`${baseUrl}services/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          access_token : localStorage.getItem('access_token')
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({type : SERVICES_UPDATE, payload : data})
+        })
+        .catch((error) => {
+          dispatch({type : SERVICES_ERROR, payload : error?.message })
+        })
+        .finally(_=>{
+          dispatch({type : SERVICES_ADD_LOADING, payload : false})
+        })
+    }
+  }
+
+  export const addService = (payload) => {
+    return (dispatch, getState) => {
+      dispatch({type : SERVICES_ADD_LOADING, payload : true})
+      fetch( baseUrl + "services", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          access_token: localStorage.getItem("access_token"),
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("something wrong");
+          }
+        })
+        .then((data) => {
+          dispatch({type : SERVICES_ADD_RESPONSE, payload : data})
+        })
+        .catch((error) => {
+          dispatch({type : SERVICES_ERROR, payload : error?.message })
+        })
+        .finally( _ => {
+          dispatch({type : SERVICES_ADD_LOADING, payload : false})
+        })
+    }
+  }
 
   export const fetchWargas = () => {
     return (dispatch) => {
