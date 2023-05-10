@@ -25,12 +25,12 @@ export default function WargaPage() {
           style={{
             color: "rgba(59,7,11,255)",
             marginTop: "120px",
-            fontSize: "35px",
+            fontSize: "30px",
             textAlign:"center",
             fontWeight: "bold"
           }}
         >
-          Data Warga RT X
+          Data Warga RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}
         </h1>
         <div
           className="myButton"
@@ -54,7 +54,7 @@ export default function WargaPage() {
               <tr>
                 <th>No</th>
                 <th>Nama Lengkap</th>
-                <th>Nomor Telepon</th>
+                <th>Foto</th>
                 <th>Email</th>
                 <th>Status Akun</th>
                 <th>Akun</th>
@@ -62,7 +62,7 @@ export default function WargaPage() {
               </tr>
             </thead>
             <tbody >
-                {wargas.map((warga, index) => {
+                {wargas.Users.map((warga, index) => {
                     return <WargaRow warga={warga} key={warga.id} index={index} />;
                   })}
             </tbody>

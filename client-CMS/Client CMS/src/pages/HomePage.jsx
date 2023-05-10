@@ -3,7 +3,7 @@ import PostCard from "../components/PostCard";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../store/action/actionCreator";
+import { fetchPosts, fetchWargas } from "../store/action/actionCreator";
 import LoadingScreen from "../components/LoadingScreen";
 import { useEffect } from "react";
 
@@ -12,17 +12,21 @@ export default function HomePage() {
   const { posts, loading } = useSelector(
     (state) => state.post
   );
+
+  const { wargas } = useSelector(
+    (state) => state.warga
+  );
   
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchPosts()), [dispatch]);
-  
+  useEffect(() => dispatch(fetchWargas()), [dispatch]);
   // console.log(posts)
   return (
     <Container style={{ marginTop: "100px" }}>
       {loading ? <LoadingScreen /> : (
         <>
-          <h1 style={{ color: 'rgba(59,7,11,255)', marginTop: "120px", fontSize: "35px", textAlign: "center", fontWeight: "bold" }}>Pos Informasi Kegiatan RT X</h1>
+          <h1 style={{ color: 'rgba(59,7,11,255)', marginTop: "120px", fontSize: "30px", textAlign: "center", fontWeight: "bold" }}>Pos Informasi RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
           <div className="myButton" style={{ marginBottom: "5px", textAlign: "right" }}>
             <Button
               as={Link}
