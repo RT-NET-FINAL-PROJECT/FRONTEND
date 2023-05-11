@@ -20,8 +20,9 @@ export default function ServiceRequestRow({ request, index }) {
     return (
         <tr >
             <td>{++index}</td>
-            <td>{request.Service.name}</td>
             <td>{request.User.namaLengkap}</td>
+            <td>{request.Service.name}</td>
+            <td>{request.keperluan}</td>
             <td>
             <Form.Group>
             <Form.Control value={status} onChange={selectHandler}

@@ -45,8 +45,8 @@ export default function RequestPage() {
             <thead style={{backgroundColor: "rgba(59,7,11,255)",  color:'white'}}>
               <tr>
                 <th>No</th>
-                <th>Jenis Request Warga</th>
                 <th>Nama Lengkap Warga</th>
+                <th>Jenis Request</th>
                 <th>Status Request</th>
                 <th></th>
               </tr>
@@ -82,8 +82,9 @@ export default function RequestPage() {
             <thead style={{backgroundColor: "rgba(59,7,11,255)",  color:'white'}}>
               <tr>
                 <th>No</th>
-                <th>Jenis Request Warga</th>
                 <th>Nama Lengkap Warga</th>
+                <th>Jenis Request</th>
+                <th>Tujuan Pengajuan</th>
                 <th>Status Request</th>
                 <th></th>
               </tr>

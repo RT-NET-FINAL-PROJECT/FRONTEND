@@ -20,8 +20,8 @@ export default function RegisterRequestRow({ regist, index }) {
     return (
         <tr >
             <td>{++index}</td>
-            <td>{regist.keterangan}</td>
             <td>{regist.User.namaLengkap}</td>
+            <td>{regist.keterangan}</td>
             <td>
             <Form.Group>
             <Form.Control value={status} onChange={selectHandler}

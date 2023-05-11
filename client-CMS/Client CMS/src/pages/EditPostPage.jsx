@@ -26,7 +26,7 @@ export default function EditPostPage() {
   const [kategori, setKategori] = useState(() => "")
   const [lokasi, setLokasi] = useState(() => "")
   const [biaya, setBiaya] = useState(() => "")
-
+  const [imageUrl, setImageUrl] = useState(() => "")
   // const dispatch = useDispatch()
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function EditPostPage() {
       setKategori(postDetail.kategori)
       setLokasi(postDetail.lokasi)
       setBiaya(postDetail.biaya)
+      setImageUrl(postDetail.imageUrl)
     }
   }, [postDetail])
 
@@ -46,7 +47,8 @@ export default function EditPostPage() {
       deskripsi,
       kategori,
       lokasi,
-      biaya
+      biaya,
+      imageUrl
     };
 
     dispatch(updatePost(objToSend, postId))
@@ -122,6 +124,15 @@ export default function EditPostPage() {
             value={biaya}
             onChange={(e) => setBiaya(e.target.value)}
             placeholder="Biaya Iuran Kegiatan"
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Link Gambar Kegiatan</Form.Label>
+          <Form.Control
+            name="imageUrl"
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            placeholder="Link Gambar Kegiatan"
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
           />
         </Form.Group>
