@@ -34,7 +34,8 @@ export default function WargaDetailPage() {
                     fontSize: "20px",
                     backgroundColor: 'rgba(59,7,11,255)',
                     borderColor: 'rgba(59,7,11,255)',
-                    color: "white"
+                    color: "white",
+                    fontWeight:"bold"
                   }}
                 >
                   Data Lengkap Warga
@@ -48,7 +49,8 @@ export default function WargaDetailPage() {
                         backgroundColor: 'white',
                         borderColor: 'rgba(59,7,11,255)',
                         color: 'rgba(59,7,11,255)',
-                        marginRight: '10px'
+                        marginRight: '10px',
+                        fontWeight:"bold"
                       }}
                     >
                       Ubah Detil Data

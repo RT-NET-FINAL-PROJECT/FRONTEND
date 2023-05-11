@@ -107,9 +107,9 @@ export default function RegisterRTAdminPage() {
 
     return (
         <>
-        <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "30px", textAlign: "center", marginTop: "7%", marginBottom: "3%", fontWeight: "bold" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+        <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "40px", textAlign: "center", marginTop: "7%", fontWeight: "bold" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
             <Container style={{ marginBottom: "3%", width: "500px", backgroundColor: 'white', padding: "20px" }}>
-                <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "30px", textAlign: "center", marginBottom: "7%", fontWeight: "bold" }}>Registrasi Perangkat RT!</h1>
+                <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "35px", textAlign: "center", marginBottom: "10%", fontWeight: "bold" }}>Registrasi Perangkat RT</h1>
                 {showAlert && <MyAlert title={errorMessage} setShow={setShowAlert} />}
                 <Form onSubmit={submitTheValue}>
                     <Form.Group className="mb-3" controlId="formBasicNamaLengkap">
@@ -127,7 +127,7 @@ export default function RegisterRTAdminPage() {
                         <Form.Control className="form-control placeholder-color"
                             name="email"
                             type="email"
-                            placeholder="Enter email"
+                            placeholder="Enter Email"
                             onChange={changeHandler}
                             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
                         />
@@ -138,7 +138,7 @@ export default function RegisterRTAdminPage() {
                         <Form.Control
                             name="password"
                             type="password"
-                            placeholder="Enter password"
+                            placeholder="Enter Password"
                             onChange={changeHandler}
                             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)" }}
                         />
@@ -164,10 +164,14 @@ export default function RegisterRTAdminPage() {
                         />
                     </Form.Group>
                     <Link to={'/'}>
-                        <Button type="submit" style={{ marginTop: "30px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}>Back to Home
+                        <Button type="submit" style={{ marginTop: "30px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}
+                        onMouseOver={(e) => e.target.style.backgroundColor = "#c4b5b6"} 
+                        onMouseOut={(e) => e.target.style.backgroundColor = "white"}>Back to Home
                         </Button>
                     </Link>
-                    <Button type="submit" style={{ marginTop: "30px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}>Submit
+                    <Button type="submit" style={{ marginTop: "30px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}
+                    onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+                    onMouseOut={(e) => e.target.style.color = "white"}>Submit
                     </Button>
                 </Form>
             </Container>

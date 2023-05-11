@@ -19,8 +19,6 @@ import AddLayananPage from '../pages/AddLayananPage'
 import EditLayananPage from '../pages/EditLayananPage'
 import DeleteLayananPage from '../pages/DeleteLayananPage'
 import RequestPage from '../pages/RequestPage'
-import AddRequestPage from '../pages/AddRequestPage'
-import EditRequestPage from '../pages/EditRequestPage'
 import DeleteRequestPage from '../pages/DeleteRequestPage'
 
 const router = createBrowserRouter([
@@ -88,14 +86,6 @@ const router = createBrowserRouter([
             {
                 path : "/request",
                 element : <RequestPage />
-            },
-            {
-                path : "/request/add",
-                element : <AddRequestPage />
-            },
-            {
-                path : "/request/edit/:requestId",
-                element : <EditRequestPage />
             },
             {
                 path : "/request/delete/:requestId",

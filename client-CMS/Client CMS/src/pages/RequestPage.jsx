@@ -20,8 +20,6 @@ export default function RequestPage() {
   const { wargas } = useSelector(
     (state) => state.warga
   );
-  console.log(regists)
-  console.log(requests)
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchRegists()), [dispatch]);
   useEffect(() => dispatch(fetchRequests()), [dispatch]);
@@ -35,7 +33,7 @@ export default function RequestPage() {
           style={{
             color: "rgba(59,7,11,255)",
             marginTop: "120px",
-            fontSize: "30px",
+            fontSize: "35px",
             textAlign:"center",
             fontWeight: "bold"
           }}
@@ -65,14 +63,14 @@ export default function RequestPage() {
       )}
       </Container>
 
-      <Container style={{ marginTop: "100px" }}>
+      <Container style={{ marginTop: "150px" }}>
       {loading ? <LoadingScreen /> : (
         <>
         <h1
           style={{
             color: "rgba(59,7,11,255)",
             marginTop: "120px",
-            fontSize: "30px",
+            fontSize: "35px",
             textAlign:"center",
             fontWeight: "bold"
           }}

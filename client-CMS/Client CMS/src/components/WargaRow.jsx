@@ -21,10 +21,13 @@ export default function WargaRow({ warga, index }) {
                                 borderColor:'rgba(59,7,11,255)',
                                 color:'rgba(59,7,11,255)',
                                 marginRight:'10px',
-                                fontSize:"15px"
+                                fontSize:"15px",    
+                                fontWeight: "bold",
                             }}
+                            onMouseOver={(e) => e.target.style.backgroundColor = "#c4b5b6"} 
+                            onMouseOut={(e) => e.target.style.backgroundColor = "white"}
                         >
-                        Lihat Detil Data
+                        Lihat Detil
                         </Button>
                     </Link>
                     <Link to={`/warga/edit/${warga.id}`}>
@@ -34,10 +37,13 @@ export default function WargaRow({ warga, index }) {
                                 borderColor:'rgba(59,7,11,255)',
                                 color:'white',
                                 marginRight:'10px',
-                                fontSize:"15px"
+                                fontSize:"15px",
+                                fontWeight: "bold",
                             }}
+                            onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+                            onMouseOut={(e) => e.target.style.color = "white"}
                         >
-                        Ubah Detil Data
+                        Ubah Detil
                         </Button>
                     </Link>
                     <Link to={`/warga/delete/${warga.id}`}>
@@ -45,8 +51,11 @@ export default function WargaRow({ warga, index }) {
                         style={{
                             backgroundColor:'rgba(59,7,11,255)', 
                             borderColor:'rgba(59,7,11,255)',
-                            fontSize:"15px"
+                            fontSize:"15px",
+                            fontWeight: "bold",
                         }}
+                        onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+                        onMouseOut={(e) => e.target.style.color = "white"}
                         >
                         Hapus Data
                         </Button>

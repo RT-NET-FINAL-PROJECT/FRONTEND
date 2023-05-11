@@ -454,7 +454,7 @@ import {
         }
       })
         .then((response) => {
-          console.log(response)
+          // console.log(response)
           if (response.ok) {
             return response.json();
           } else {
@@ -462,7 +462,7 @@ import {
           }
         })
         .then((data) => {
-          console.log(data)
+          // console.log(data)
           dispatch({type : REQUESTS_PATCH, payload : data})
         })
         .catch((error) => {
@@ -497,7 +497,7 @@ import {
           }
         })
         .then((data) => {
-          console.log(data)
+          // console.log(data)
           dispatch({type : REGISTS_PATCH, payload : data})
         })
         .catch((error) => {

@@ -27,11 +27,18 @@ export default function ServiceRequestRow({ request, index }) {
             <Form.Control value={status} onChange={selectHandler}
                 name="rt"
                 as="select"
-                style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "2px" }}
+                style={{color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "2px" }}
             >
-                <option value="pending">Pending</option>
-                <option value="in progress">In Progress</option>
-                <option value="done">Done</option>
+                <option style={{color: 'rgba(59,7,11,255)'}} value="pending">Pending</option>
+                <option style={{color: 'rgba(59,7,11,255)'}} value="in progress">In Progress</option>
+                <option style={{color: 'rgba(59,7,11,255)'}} value="done">Done</option>
+                <style>
+                {`
+                    option:hover {
+                        background-color: red;
+                    }
+                `}
+                </style>
             </Form.Control>
         </Form.Group>
             </td>
@@ -41,8 +48,11 @@ export default function ServiceRequestRow({ request, index }) {
                         <Button 
                         style={{
                             backgroundColor:'rgba(59,7,11,255)', 
-                            borderColor:'rgba(59,7,11,255)'
+                            borderColor:'rgba(59,7,11,255)',
+                            fontWeight:'bold'
                         }}
+                        onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+                        onMouseOut={(e) => e.target.style.color = "white"}
                         >
                         Hapus Request
                         </Button>
