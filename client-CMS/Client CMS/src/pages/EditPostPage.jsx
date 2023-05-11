@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailPost, updatePost } from "../store/action/actionCreator";
+import { fetchDetailPost, updatePost, fetchWargas } from "../store/action/actionCreator";
 import { POSTS_ERROR, POSTS_UPDATE } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong"
 
@@ -16,6 +16,10 @@ export default function EditPostPage() {
   useEffect(() => dispatch(fetchDetailPost(postId)), [dispatch, postId])
   const [modalShow, setModalShow] = useState(false);
   const { postDetail, loadingStatus, errorMessage, updateStatus } = useSelector((state) => state.post)
+
+  const { wargas } = useSelector(
+    (state) => state.warga
+  );
 
   const [name, setName] = useState(() => "")
   const [deskripsi, setDeskripsi] = useState(() => "")
@@ -65,8 +69,9 @@ export default function EditPostPage() {
   }, [errorMessage, dispatch])
 
   return (
-    <Container className="w-50" style={{ marginTop: "100px" }}>
-      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize: "35px", textAlign: "center" }}>Ubah Informasi Kegiatan "Nama Kegiatan" di RT X</h1>
+    <Container className="w-50" style={{ marginTop: "100px", marginBottom:"30px" }}>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "80px", fontSize: "35px", textAlign: "center" }}>Ubah Informasi Kegiatan</h1>
       <Form onSubmit={editPost} style={{ borderColor: 'rgba(59,7,11,255)', marginTop: "25px" }}>
         <Form.Group >
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "5px" }}>Nama Kegiatan</Form.Label>

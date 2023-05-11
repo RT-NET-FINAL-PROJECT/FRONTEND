@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailService, updateService } from "../store/action/actionCreator";
+import { fetchDetailService, updateService, fetchWargas } from "../store/action/actionCreator";
 import { SERVICES_ERROR, SERVICES_UPDATE } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong"
 
@@ -17,11 +17,14 @@ export default function EditLayananPage() {
   const [modalShow, setModalShow] = useState(false);
   const { serviceDetail, loadingStatus, errorMessage, updateStatus } = useSelector((state) => state.service)
 
+  const { wargas } = useSelector(
+    (state) => state.warga
+  );
   const [name, setName] = useState(() => "")
   const [deskripsi, setDeskripsi] = useState(() => "")
   const [dokumen_pendukung, setDokumenPendukung] = useState(() => "")
 
-  // const dispatch = useDispatch()
+  useEffect(() => dispatch(fetchWargas()), [dispatch]);
 
   useEffect(() => {
     if (serviceDetail) {
@@ -60,7 +63,8 @@ export default function EditLayananPage() {
 
   return (
     <Container className="w-50" style={{ marginTop: "100px" }}>
-      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize: "35px", textAlign: "center" }}>Ubah Info Layanan di RT X</h1>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "80px", fontSize: "35px", textAlign: "center" }}>Ubah Info Layanan</h1>
       <Form onSubmit={editService} style={{ borderColor: 'rgba(59,7,11,255)', marginTop: "25px" }}>
         <Form.Group >
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "5px" }}>Nama Layanan:</Form.Label>
