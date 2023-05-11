@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { baseUrl } from "../config/api";
+import Swal from 'sweetalert2';
 
 export default function DeleteRequestPage() {
   const { requestId } = useParams();
   
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const deleteHandler = (event) => {
     event.preventDefault();
+    setLoading(true);
     fetch(`${baseUrl}submissions/${requestId}`, {
       method: "DELETE",
       headers: {
@@ -27,10 +30,21 @@ export default function DeleteRequestPage() {
         }
       })
       .then((data) => {
-        navigate("/request");
+        setLoading(false);
+        Swal.fire({
+          text: "Data request warga berhasil dihapus.",
+          icon: "success",
+          iconColor: 'rgba(59,7,11,255)',
+          title: 'Penghapusan Data Request Warga',
+          showConfirmButton: false,
+          timer: 1500,
+        }).then((result) => {
+            navigate("/request");
+        });
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   };
   return (

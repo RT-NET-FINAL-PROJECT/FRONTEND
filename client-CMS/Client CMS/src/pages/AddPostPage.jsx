@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost, fetchWargas } from "../store/action/actionCreator";
 import { POSTS_ADD_RESPONSE, POSTS_ERROR } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong";
+import Swal from 'sweetalert2';
+
 
 export default function AddPostPage() {
 
@@ -43,12 +45,25 @@ export default function AddPostPage() {
     dispatch({ type: POSTS_ERROR, payload: "" })
   }, [dispatch]);
 
-  const submitNewPost = (event) => {
+  const submitNewPost = async (event) => {
     event.preventDefault();
-
-    dispatch(addPost(postData))
-
+  
+    try {
+      await dispatch(addPost(postData));
+      Swal.fire({
+        icon: 'success',
+        iconColor: 'rgba(59,7,11,255)',
+        title: 'Penambahan Informasi',
+        text: `Informasi ${postData.kategori} berhasil ditambahkan!`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
+  
 
   // console.log(postResponse)
   useEffect(() => {
@@ -152,7 +167,7 @@ export default function AddPostPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='Internal server error' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   );

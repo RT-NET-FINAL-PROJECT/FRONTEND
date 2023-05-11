@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDetailService, updateService, fetchWargas } from "../store/action/actionCreator";
 import { SERVICES_ERROR, SERVICES_UPDATE } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong"
+import Swal from 'sweetalert2';
 
 export default function EditLayananPage() {
   const { layananId } = useParams();
@@ -47,6 +48,14 @@ export default function EditLayananPage() {
   // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Informasi Layanan Warga",
+        iconColor: 'rgba(59,7,11,255)',
+        text: "Informasi Layanan Warga telah berhasil diubah!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       navigate('/layanan')
     }
 
@@ -120,7 +129,7 @@ export default function EditLayananPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='All fields must be filled' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   )

@@ -8,6 +8,8 @@ import { baseUrl } from "../config/api.js"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchWargas } from "../store/action/actionCreator";
+import Swal from 'sweetalert2';
+
 export default function RegisterRTAdminPage() {
 
     const { wargas } = useSelector(
@@ -85,6 +87,15 @@ export default function RegisterRTAdminPage() {
             })
             .then((data) => {
                 // console.log(data)
+                Swal.fire({
+                    icon: 'success',
+                    iconColor: 'rgba(59,7,11,255)',
+                    title: 'Registrasi Akun  Perangkat RT',
+                    text: 'Akun Perangkat RT telah berhasil didaftarkan.',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
                 navigate('/')
             })
             .catch((error) => {

@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { baseUrl } from "../config/api";
-
+import Swal from 'sweetalert2';
 
 export default function DeletePostPage() {
   const { postId } = useParams();
-  
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const deleteHandler = (event) => {
     event.preventDefault();
+    setLoading(true);
     fetch(`${baseUrl}event/${postId}`, {
       method: "DELETE",
       headers: {
@@ -20,19 +21,23 @@ export default function DeletePostPage() {
         access_token: localStorage.getItem("access_token"),
       },
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("something is wrong");
-        }
-      })
-      .then((data) => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
+    .then((data) => {
+      setLoading(false);
+      Swal.fire({
+        text: "Pos Informasi berhasil dihapus.",
+        icon: "success",
+        iconColor: 'rgba(59,7,11,255)',
+        title: 'Penghapusan Pos Informasi Warga',
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((result) => {
+          navigate("/");
       });
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false);
+    });
   };
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{ height: '70vh' }}>

@@ -6,6 +6,7 @@ import Logo from "../assets//Logo RT-Net-No-BG.png"
 import { Link, useNavigate } from "react-router-dom";
 import MyAlert from "../components/MyAlert";
 import { baseUrl } from "../config/api.js"
+import Swal from 'sweetalert2';
 
 export default function RegisterRTPage() {
     const navigate = useNavigate()
@@ -79,6 +80,14 @@ export default function RegisterRTPage() {
             })
             .then((data) => {
                 // console.log(data)
+                Swal.fire({
+                    icon: 'success',
+                    iconColor: 'rgba(59,7,11,255)',
+                    title: 'Registrasi Akun Ketua RT',
+                    text: 'Akun Ketua RT telah berhasil didaftarkan.',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
                 navigate('/login')
             })
             .catch((error) => {

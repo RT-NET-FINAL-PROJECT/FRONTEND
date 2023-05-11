@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import MyAlert from "../components/MyAlert";
 import { baseUrl } from "../config/api.js"
+import Swal from 'sweetalert2';
 
 export default function RegisterRTBaruPage() {
 
@@ -101,6 +102,16 @@ export default function RegisterRTBaruPage() {
       })
       .then((data) => {
         // console.log(data)
+
+        Swal.fire({
+          icon: 'success',
+          iconColor: 'rgba(59,7,11,255)',
+          title: 'Registrasi RT Baru',
+          text: 'Registrasi RT Baru telah berhasil dilakukan.',
+          showConfirmButton: false,
+          timer: 3000
+      });
+
         navigate('/')
       })
       .catch((error) => {

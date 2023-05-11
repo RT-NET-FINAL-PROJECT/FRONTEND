@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDetailWarga, updateWarga } from "../store/action/actionCreator";
 import { WARGAS_ERROR, WARGAS_UPDATE } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong"
+import Swal from 'sweetalert2';
 
 export default function EditWargaPage() {
   const { wargaId } = useParams();
@@ -84,6 +85,14 @@ export default function EditWargaPage() {
   // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Data Warga",
+        iconColor: 'rgba(59,7,11,255)',
+        text: "Data Warga telah berhasil diubah!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       navigate(`/warga/detail/${wargaId}`)
     }
 
@@ -243,7 +252,7 @@ export default function EditWargaPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='All fields must be filled' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   )

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDetailPost, updatePost, fetchWargas } from "../store/action/actionCreator";
 import { POSTS_ERROR, POSTS_UPDATE } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong"
+import Swal from 'sweetalert2';
 
 export default function EditPostPage() {
   const { postId } = useParams();
@@ -56,7 +57,15 @@ export default function EditPostPage() {
   // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
-      navigate('/')
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Ubah Pos Informasi",
+        iconColor: 'rgba(59,7,11,255)',
+        text: "Pos Informasi telah berhasil diubah!",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate("/");
     }
 
     return () => dispatch({ type: POSTS_UPDATE, payload: null })
@@ -161,7 +170,7 @@ export default function EditPostPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='All fields must be filled' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   );

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addService, fetchWargas } from "../store/action/actionCreator";
 import { SERVICES_ADD_RESPONSE, SERVICES_ERROR } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong";
-
+import Swal from 'sweetalert2';
 
 export default function AddLayananPage() {
 
@@ -41,10 +41,23 @@ export default function AddLayananPage() {
     dispatch({ type: SERVICES_ERROR, payload: "" })
   }, [dispatch]);
 
-  const submitNewService = (event) => {
+  const submitNewService = async (event) => {
     event.preventDefault();
 
-    dispatch(addService(serviceData))
+    try {
+      await dispatch(addService(serviceData));
+      Swal.fire({
+        icon: 'success',
+        iconColor: 'rgba(59,7,11,255)',
+        title: 'Penambahan Informasi',
+        text: `Informasi layanan berhasil ditambahkan!`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/layanan');
+    } catch (error) {
+      console.log(error);
+    }
 
   };
 
@@ -119,7 +132,7 @@ export default function AddLayananPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='Internal server error' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   )

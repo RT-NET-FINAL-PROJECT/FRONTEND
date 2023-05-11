@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function PostCard({ post }) {
   // console.log(post)
+  const kategori = post.kategori === "pengumuman" ? "Pengumuman" : "Event";
   return (
     <div style={{ marginTop: "20px", marginBottom: "30px" }}>
       <Card style={{ borderColor: 'rgba(59,7,11,255)' }}>
@@ -16,7 +17,7 @@ export default function PostCard({ post }) {
             color: "white"
           }}
         >
-          {post.kategori}
+        {kategori}
         </Card.Header>
         <Card.Body>
           <div style={{ textAlign: "center", margin: "30px" }}>
@@ -26,8 +27,10 @@ export default function PostCard({ post }) {
           <br/>
           <Card.Text>
             Deskripsi Kegiatan&emsp;&emsp;:&ensp;
-            {post.deskripsi}
           </Card.Text>
+          <Card.Text>
+          {post.deskripsi}
+        </Card.Text>
           <Card.Text>
             Lokasi Kegiatan&emsp;&emsp;&emsp;&nbsp;:&ensp;
             {post.lokasi}
