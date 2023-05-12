@@ -43,7 +43,7 @@ export default function Services({ navigation, route }) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      // aspect: [4, 3],
       quality: 1,
     });
 
@@ -149,7 +149,7 @@ export default function Services({ navigation, route }) {
 
             <View style={{ marginTop: 15 }}>
               <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-                Keterangan <Text style={{ color: "red" }}>*</Text>
+                Keperluan <Text style={{ color: "red" }}>*</Text>
               </Text>
               <TextInput
                 editable
@@ -172,7 +172,8 @@ export default function Services({ navigation, route }) {
                       flex: 3,
                     }}
                   >
-                    Lampirkan Foto <Text style={{ color: "red" }}>*</Text>
+                    Lampirkan Dokumen Pendukung
+                    <Text style={{ color: "red" }}>*</Text>
                   </Text>
                   {!isEditing ? (
                     <Text

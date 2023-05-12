@@ -47,15 +47,22 @@ export default function EventCard({ post, navigation, postsLoading }) {
                   {post?.name}
                 </Text>
               </View>
+              <Image
+                source={{
+                  // uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2BNGImiFNXoEc3ONE3biDks4T4Y9JkCJCMA&usqp=CAU",
+                  uri: post?.imageUrl,
+                }}
+                style={{ width: "100%", height: 220, marginVertical: 10 }}
+              />
               {/* Divider */}
-              <View
+              {/* <View
                 style={{
                   borderColor: "#ededed",
                   borderWidth: 1,
                   marginTop: 10,
                   marginBottom: 16,
                 }}
-              />
+              /> */}
               {/* End Divider */}
               <Text style={styles.description}>
                 {post?.deskripsi.length > 100

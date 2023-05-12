@@ -61,34 +61,38 @@ export default function ServicesHistory() {
               {submissions?.map((submission, index) => {
                 return (
                   <View key={index}>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        marginBottom: 16,
-                      }}
-                    >
-                      <View style={{ fontSize: 20 }}>
-                        <Text style={{ fontWeight: "bold" }}>
-                          {submission?.keterangan}
-                        </Text>
-                        <Text>{submission?.keperluan}</Text>
-                      </View>
-                      <View style={{ fontSize: 20 }}>
-                        <Text>
-                          {submission?.status?.charAt(0).toUpperCase() +
-                            submission?.status?.slice(1)}
-                        </Text>
-                        {/* <MaterialIcons
+                    {submission?.keterangan !== "Register Warga" && (
+                      <View>
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            marginBottom: 16,
+                          }}
+                        >
+                          <View style={{ fontSize: 20 }}>
+                            <Text style={{ fontWeight: "bold" }}>
+                              {submission?.keterangan}
+                            </Text>
+                            <Text>{submission?.keperluan}</Text>
+                          </View>
+                          <View style={{ fontSize: 20 }}>
+                            <Text>
+                              {submission?.status?.charAt(0).toUpperCase() +
+                                submission?.status?.slice(1)}
+                            </Text>
+                            {/* <MaterialIcons
                           style={{ textAlign: "right", color: "red" }}
                           name="delete"
                           size={24}
                           color="black"
                           // onPress={() => handleDelete(guest?.id, guest?.name)}
                         /> */}
+                          </View>
+                        </View>
+                        {index !== submissions.length - 1 && <Card.Divider />}
                       </View>
-                    </View>
-                    <Card.Divider />
+                    )}
                   </View>
                 );
               })}
