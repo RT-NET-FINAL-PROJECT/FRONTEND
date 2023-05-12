@@ -77,9 +77,7 @@ export default function AddVehicle({ navigation }) {
             <TextInput
               style={styles.input}
               value={nomorPolisi}
-              onChangeText={(text) =>
-                setNomorPolisi(text.replace(/[^0-9]/g, ""))
-              }
+              onChangeText={(text) => setNomorPolisi(text)}
             />
           </View>
           <Button
