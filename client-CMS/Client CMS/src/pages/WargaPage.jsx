@@ -25,7 +25,7 @@ export default function WargaPage() {
           style={{
             color: "rgba(59,7,11,255)",
             marginTop: "120px",
-            fontSize: "30px",
+            fontSize: "40px",
             textAlign:"center",
             fontWeight: "bold"
           }}
@@ -40,12 +40,16 @@ export default function WargaPage() {
             as={Link}
             to={"/warga/add"}
             style={{
-              marginTop: "30px",
-              backgroundColor: "rgba(59,7,11,255)",
-              borderColor: "rgba(59,7,11,255)",
+                marginTop: "50px",
+                backgroundColor: 'rgba(59,7,11,255)',
+                borderColor: 'rgba(59,7,11,255)',
+                padding:"10px",
+                fontWeight:"bold",
             }}
+            onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+            onMouseOut={(e) => e.target.style.color = "white"}
           >
-            + Tambahkan Data Warga
+            + Tambahkan Data
           </Button>
         </div>
         <div className="warga-row" style={{ overflowX: "auto" }}>

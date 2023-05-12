@@ -34,7 +34,8 @@ export default function WargaDetailPage() {
                     fontSize: "20px",
                     backgroundColor: 'rgba(59,7,11,255)',
                     borderColor: 'rgba(59,7,11,255)',
-                    color: "white"
+                    color: "white",
+                    
                   }}
                 >
                   Data Lengkap Warga
@@ -48,7 +49,8 @@ export default function WargaDetailPage() {
                         backgroundColor: 'white',
                         borderColor: 'rgba(59,7,11,255)',
                         color: 'rgba(59,7,11,255)',
-                        marginRight: '10px'
+                        marginRight: '10px',
+                        fontWeight:"bold"
                       }}
                     >
                       Ubah Detil Data
@@ -77,11 +79,22 @@ export default function WargaDetailPage() {
                   <Card.Text>Pekerjaan&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;: {wargaDetail?.pekerjaan}</Card.Text>
                   <Card.Text>Status Perkawinan&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;: {wargaDetail?.status_perkawinan}</Card.Text>
                   <Card.Text>Status Keluarga&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;: {wargaDetail?.status_keluarga}</Card.Text>
-                  <Card.Text>Foto&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;:</Card.Text>
-                  <img src={wargaDetail?.photoUrl} style={{width:"100px"}}alt="img"/>
-                  <Card.Text>KTP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:</Card.Text>
-                  <Card.Text>Akta&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;:</Card.Text>
-                  <Card.Text>Kartu Keluarga&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:</Card.Text>
+                  <Card.Text style={{marginTop:"20px"}}>Foto&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;:</Card.Text>
+                  <div style={{textAlign:"center"}}>
+                  <img src={wargaDetail?.photoUrl} style={{width:"200px"}}alt="img"/>
+                  </div>
+                  <Card.Text style={{marginTop:"20px"}}>KTP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:</Card.Text>
+                  <div style={{textAlign:"center"}}>
+                  <img src={wargaDetail?.ktpImg} style={{width:"520px", height:"250px", borderRadius:"3px"}}alt="img"/>
+                  </div>
+                  <Card.Text style={{marginTop:"20px"}}>Akta&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;:</Card.Text>
+                  <div style={{textAlign:"center"}}>
+                  <img src={wargaDetail?.aktaImg} style={{width:"520px", height:"750px", borderRadius:"3px"}}alt="img"/>
+                  </div>
+                  <Card.Text style={{marginTop:"20px"}}>Kartu Keluarga&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:</Card.Text>
+                  <div style={{textAlign:"center"}}>
+                  <img src={wargaDetail?.kkImg} style={{width:"520px", height:"300px", borderRadius:"3px"}}alt="img"/>
+                  </div>
                 </Card.Body>
               </Card>
             </div>

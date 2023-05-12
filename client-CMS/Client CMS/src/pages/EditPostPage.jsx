@@ -5,9 +5,10 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailPost, updatePost } from "../store/action/actionCreator";
+import { fetchDetailPost, updatePost, fetchWargas } from "../store/action/actionCreator";
 import { POSTS_ERROR, POSTS_UPDATE } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong"
+import Swal from 'sweetalert2';
 
 export default function EditPostPage() {
   const { postId } = useParams();
@@ -17,12 +18,16 @@ export default function EditPostPage() {
   const [modalShow, setModalShow] = useState(false);
   const { postDetail, loadingStatus, errorMessage, updateStatus } = useSelector((state) => state.post)
 
+  const { wargas } = useSelector(
+    (state) => state.warga
+  );
+
   const [name, setName] = useState(() => "")
   const [deskripsi, setDeskripsi] = useState(() => "")
   const [kategori, setKategori] = useState(() => "")
   const [lokasi, setLokasi] = useState(() => "")
   const [biaya, setBiaya] = useState(() => "")
-
+  const [imageUrl, setImageUrl] = useState(() => "")
   // const dispatch = useDispatch()
 
   useEffect(() => {
@@ -32,6 +37,7 @@ export default function EditPostPage() {
       setKategori(postDetail.kategori)
       setLokasi(postDetail.lokasi)
       setBiaya(postDetail.biaya)
+      setImageUrl(postDetail.imageUrl)
     }
   }, [postDetail])
 
@@ -42,7 +48,8 @@ export default function EditPostPage() {
       deskripsi,
       kategori,
       lokasi,
-      biaya
+      biaya,
+      imageUrl
     };
 
     dispatch(updatePost(objToSend, postId))
@@ -50,7 +57,15 @@ export default function EditPostPage() {
   // console.log(updateStatus)
   useEffect(() => {
     if (updateStatus) {
-      navigate('/')
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Ubah Pos Informasi",
+        iconColor: 'rgba(59,7,11,255)',
+        text: "Pos Informasi telah berhasil diubah!",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate("/");
     }
 
     return () => dispatch({ type: POSTS_UPDATE, payload: null })
@@ -65,8 +80,9 @@ export default function EditPostPage() {
   }, [errorMessage, dispatch])
 
   return (
-    <Container className="w-50" style={{ marginTop: "100px" }}>
-      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize: "35px", textAlign: "center" }}>Ubah Informasi Kegiatan "Nama Kegiatan" di RT X</h1>
+    <Container className="w-50" style={{ marginTop: "100px", marginBottom:"30px" }}>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "80px", fontSize: "35px", textAlign: "center" }}>Ubah Informasi Kegiatan</h1>
       <Form onSubmit={editPost} style={{ borderColor: 'rgba(59,7,11,255)', marginTop: "25px" }}>
         <Form.Group >
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "5px" }}>Nama Kegiatan</Form.Label>
@@ -119,6 +135,15 @@ export default function EditPostPage() {
             placeholder="Biaya Iuran Kegiatan"
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
           />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Link Gambar Kegiatan</Form.Label>
+          <Form.Control
+            name="imageUrl"
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            placeholder="Link Gambar Kegiatan"
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
         </Form.Group>
         <Link to={'/'}>
           <Button
@@ -145,7 +170,7 @@ export default function EditPostPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='All fields must be filled' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   );

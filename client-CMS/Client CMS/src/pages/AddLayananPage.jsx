@@ -5,9 +5,10 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addService } from "../store/action/actionCreator";
+import { addService, fetchWargas } from "../store/action/actionCreator";
 import { SERVICES_ADD_RESPONSE, SERVICES_ERROR } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong";
+import Swal from 'sweetalert2';
 
 export default function AddLayananPage() {
 
@@ -16,6 +17,10 @@ export default function AddLayananPage() {
     deskripsi: "",
     dokumen_pendukung: ""
   });
+  
+  const { wargas } = useSelector(
+    (state) => state.warga
+  );
 
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
@@ -28,16 +33,31 @@ export default function AddLayananPage() {
     // console.log(obj);
     setServiceData(obj);
   };
+  
+  useEffect(() => dispatch(fetchWargas()), [dispatch]);
 
   useEffect(() => {
     dispatch({ type: SERVICES_ADD_RESPONSE, payload: null })
     dispatch({ type: SERVICES_ERROR, payload: "" })
   }, [dispatch]);
 
-  const submitNewService = (event) => {
+  const submitNewService = async (event) => {
     event.preventDefault();
 
-    dispatch(addService(serviceData))
+    try {
+      await dispatch(addService(serviceData));
+      Swal.fire({
+        icon: 'success',
+        iconColor: 'rgba(59,7,11,255)',
+        title: 'Penambahan Informasi',
+        text: `Informasi layanan berhasil ditambahkan!`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/layanan');
+    } catch (error) {
+      console.log(error);
+    }
 
   };
 
@@ -58,7 +78,8 @@ export default function AddLayananPage() {
 
   return (
     <Container className="w-50" style={{ marginTop: "100px" }}>
-      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize: "35px", textAlign: "center" }}>Tambahkan Layanan di RT X</h1>
+    <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "80px", fontSize: "35px", textAlign: "center" }}>Tambahkan Layanan RT</h1>
       <Form onSubmit={submitNewService} style={{ borderColor: 'rgba(59,7,11,255)', marginTop: "25px" }}>
         <Form.Group >
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "5px" }}>Nama Layanan:</Form.Label>
@@ -111,7 +132,7 @@ export default function AddLayananPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='Internal server error' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   )

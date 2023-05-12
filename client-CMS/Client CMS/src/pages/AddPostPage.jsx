@@ -5,9 +5,11 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../store/action/actionCreator";
+import { addPost, fetchWargas } from "../store/action/actionCreator";
 import { POSTS_ADD_RESPONSE, POSTS_ERROR } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong";
+import Swal from 'sweetalert2';
+
 
 export default function AddPostPage() {
 
@@ -16,8 +18,13 @@ export default function AddPostPage() {
     deskripsi: "",
     kategori: "",
     lokasi: "",
-    biaya: ""
+    biaya: "",
+    imageUrl:""
   });
+
+  const { wargas } = useSelector(
+    (state) => state.warga
+  );
 
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
@@ -31,17 +38,32 @@ export default function AddPostPage() {
     setPostData(obj);
   };
 
+  useEffect(() => dispatch(fetchWargas()), [dispatch]);
+
   useEffect(() => {
     dispatch({ type: POSTS_ADD_RESPONSE, payload: null })
     dispatch({ type: POSTS_ERROR, payload: "" })
   }, [dispatch]);
 
-  const submitNewPost = (event) => {
+  const submitNewPost = async (event) => {
     event.preventDefault();
-
-    dispatch(addPost(postData))
-
+  
+    try {
+      await dispatch(addPost(postData));
+      Swal.fire({
+        icon: 'success',
+        iconColor: 'rgba(59,7,11,255)',
+        title: 'Penambahan Informasi',
+        text: `Informasi ${postData.kategori} berhasil ditambahkan!`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
+  
 
   // console.log(postResponse)
   useEffect(() => {
@@ -59,8 +81,9 @@ export default function AddPostPage() {
   }, [errorMessage, dispatch])
 
   return (
-    <Container className="w-50" style={{ marginTop: "100px" }}>
-      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "120px", fontSize: "35px", textAlign: "center" }}>Tambahkan Informasi Kegiatan di RT X</h1>
+    <Container className="w-50" style={{ marginTop: "100px", marginBottom:"30px" }}>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+      <h1 style={{ color: 'rgba(59,7,11,255)', fontWeight: "bold", marginTop: "80px", fontSize: "35px", textAlign: "center" }}>Tambahkan Informasi Kegiatan</h1>
       <Form onSubmit={submitNewPost} style={{ borderColor: 'rgba(59,7,11,255)', marginTop: "25px" }}>
         <Form.Group >
           <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "5px" }}>Nama Kegiatan</Form.Label>
@@ -110,6 +133,14 @@ export default function AddPostPage() {
             onChange={postDataHandler}
             style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
           />
+          <Form.Label style={{ color: 'rgba(59,7,11,255)', marginTop: "10px" }}>Link Gambar/Poster</Form.Label>
+          <Form.Control
+            name="imageUrl"
+            type="text"
+            placeholder="Masukkan Link Gambar/Poster"
+            onChange={postDataHandler}
+            style={{ color: 'rgba(59,7,11,255)', border: "1px solid rgba(59,7,11,255)", marginTop: "5px" }}
+          />
         </Form.Group>
         <Link to={'/'}>
           <Button
@@ -136,7 +167,7 @@ export default function AddPostPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='Internal server error' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   );

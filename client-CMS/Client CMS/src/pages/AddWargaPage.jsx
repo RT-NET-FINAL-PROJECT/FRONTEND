@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addWarga } from "../store/action/actionCreator";
 import { WARGAS_ADD_RESPONSE, WARGAS_ERROR } from "../store/action/actionType";
 import MyModalsWrong from "../components/MyModalsWrong";
+import Swal from 'sweetalert2';
 
 export default function AddWargaPage() {
 
@@ -48,10 +49,23 @@ export default function AddWargaPage() {
     dispatch({ type: WARGAS_ERROR, payload: "" })
   }, [dispatch]);
 
-  const submitNewWarga = (event) => {
+  const submitNewWarga = async (event) => {
     event.preventDefault();
 
-    dispatch(addWarga(wargaData))
+    try {
+      await dispatch(addWarga(wargaData))
+      Swal.fire({
+        icon: 'success',
+        iconColor: 'rgba(59,7,11,255)',
+        title: 'Penambahan Data Warga',
+        text: `Data warga berhasil ditambahkan!`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/warga');
+    } catch (error) {
+      console.log(error);
+    }
 
   };
 
@@ -211,7 +225,7 @@ export default function AddWargaPage() {
         </Button>
       </Form>
       {modalShow && (
-        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Warning!' content='Internal server error' />
+        <MyModalsWrong show={modalShow} onHide={() => setModalShow(false)} title='Peringatan!' content='Periksa kembali, semua kolom harus diisi!' />
       )}
     </Container>
   );

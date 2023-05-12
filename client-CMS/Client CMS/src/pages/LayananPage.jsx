@@ -25,16 +25,20 @@ export default function LayananPage() {
     <Container style={{ marginTop: "100px" }}>
       {loading ? <LoadingScreen /> : (
         <>
-          <h1 style={{ color: 'rgba(59,7,11,255)', marginTop: "120px", fontSize: "30px", textAlign: "center", fontWeight: "bold" }}>Layanan Warga RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
+          <h1 style={{ color: 'rgba(59,7,11,255)', marginTop: "120px", fontSize: "40px", textAlign: "center", fontWeight: "bold" }}>Layanan Warga RT {wargas.rt}/RW {wargas.rw} Kel. {wargas.kelurahan}</h1>
           <div className="myButton" style={{ marginBottom: "5px", textAlign: "right" }}>
             <Button
               as={Link}
               to={"/layanan/add"}
               style={{
-                marginTop: "30px",
+                marginTop: "50px",
                 backgroundColor: 'rgba(59,7,11,255)',
-                borderColor: 'rgba(59,7,11,255)'
+                borderColor: 'rgba(59,7,11,255)',
+                padding:"10px",
+                fontWeight:"bold",
               }}
+              onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+              onMouseOut={(e) => e.target.style.color = "white"}
             >
               + Tambahkan Layanan Warga
             </Button>

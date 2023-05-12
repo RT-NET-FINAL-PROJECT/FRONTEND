@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import MyAlert from "../components/MyAlert";
 import { baseUrl } from "../config/api.js"
+import Swal from 'sweetalert2';
 
 export default function RegisterRTBaruPage() {
 
@@ -101,6 +102,16 @@ export default function RegisterRTBaruPage() {
       })
       .then((data) => {
         // console.log(data)
+
+        Swal.fire({
+          icon: 'success',
+          iconColor: 'rgba(59,7,11,255)',
+          title: 'Registrasi RT Baru',
+          text: 'Registrasi RT Baru telah berhasil dilakukan.',
+          showConfirmButton: false,
+          timer: 3000
+      });
+
         navigate('/')
       })
       .catch((error) => {
@@ -127,7 +138,7 @@ export default function RegisterRTBaruPage() {
 
   return (
     <>
-    <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "30px", textAlign: "center", marginTop: "7%", fontWeight: "bold" }}>Registrasi RT Baru ke ekosistem RT-NET!</h1>
+    <h1 style={{ color: 'rgba(59,7,11,255)', fontSize: "40px", textAlign: "center", marginTop: "7%", fontWeight: "bold" }}>Registrasi RT Baru</h1>
       <Container style={{ marginBottom: "3%", width: "550px", backgroundColor: 'white', padding: "40px" }}>
         {showAlert && <MyAlert title={errorMessage} setShow={setShowAlert} />}
         <Form onSubmit={submitTheValue}>
@@ -222,10 +233,13 @@ export default function RegisterRTBaruPage() {
             />
           </Form.Group>
           <Link to={'/'}>
-            <Button type="submit" style={{ marginTop: "20px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }}>Back to Home
+            <Button type="submit" style={{ marginTop: "20px", backgroundColor: "white", color: 'rgba(59,7,11,255)', fontWeight: "bold", borderColor: 'rgba(59,7,11,255)' }} onMouseOver={(e) => e.target.style.backgroundColor = "#c4b5b6"} 
+            onMouseOut={(e) => e.target.style.backgroundColor = "white"}>Back to Home
             </Button>
           </Link>
-          <Button type="submit" style={{ marginTop: "20px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }}>Submit
+          <Button type="submit" style={{ marginTop: "20px", backgroundColor: 'rgba(59,7,11,255)', color: "white", fontWeight: "bold", borderColor: 'rgba(59,7,11,255)', marginLeft: "10px" }} onMouseOver={(e) => e.target.style.color = "#c4b5b6"} 
+          onMouseOut={(e) => e.target.style.color = "white"}
+           >Submit
           </Button>
         </Form>
       </Container>
