@@ -89,11 +89,11 @@ export default function WargaDetailPage() {
                   </div>
                   <Card.Text style={{marginTop:"20px"}}>Akta&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;:</Card.Text>
                   <div style={{textAlign:"center"}}>
-                  <img src={wargaDetail?.aktaImg} style={{width:"520px", height:"250px", borderRadius:"3px"}}alt="img"/>
+                  <img src={wargaDetail?.aktaImg} style={{width:"520px", height:"750px", borderRadius:"3px"}}alt="img"/>
                   </div>
                   <Card.Text style={{marginTop:"20px"}}>Kartu Keluarga&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:</Card.Text>
                   <div style={{textAlign:"center"}}>
-                  <img src={wargaDetail?.kkImg} style={{width:"520px", height:"250px", borderRadius:"3px"}}alt="img"/>
+                  <img src={wargaDetail?.kkImg} style={{width:"520px", height:"300px", borderRadius:"3px"}}alt="img"/>
                   </div>
                 </Card.Body>
               </Card>

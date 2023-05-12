@@ -27,24 +27,6 @@ export default function ServiceRequestRow({ request, index }) {
                         timer: 1500,
                     });
                 }
-                if (request.status === "in progress" && status !== "in progress") {
-                    Swal.fire({
-                        icon: "success",
-                        iconColor: 'rgba(59,7,11,255)',
-                        title: "Status layanan berhasil diubah!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-                if (request.status === "done" && status !== "done") {
-                    Swal.fire({
-                        icon: "success",
-                        iconColor: 'rgba(59,7,11,255)',
-                        title: "Status layanan berhasil diubah!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
             } catch (error) {
                 console.log(error);
                 // handle error here
